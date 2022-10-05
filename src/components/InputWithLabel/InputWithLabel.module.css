@@ -1,0 +1,37 @@
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 100%;
+}
+
+.inputGroup label {
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 39px;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+  color: white;
+}
+
+.inputGroup input {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 39px;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid #ffffff;
+  border-radius: 40px;
+  width: 100%;
+  padding: 10px 20px;
+}
+.inputGroup input:focus {
+  outline: white;
+}
+
+.inputGroup input::placeholder {
+  color: rgb(183, 183, 183);
+  font-weight: 200;
+}

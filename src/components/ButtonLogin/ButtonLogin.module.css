@@ -1,0 +1,19 @@
+.btnLogin {
+  font-family: "Poppins";
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 42px;
+  text-align: center;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid #ffffff;
+  border-radius: 40px;
+  padding: 10px 20px;
+  width: 10%;
+}
+.btnLogin:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: all ease-in-out 0.2s;
+  color: black;
+}
