@@ -1,14 +1,27 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import ButtonLogin from "../components/ButtonLogin/ButtonLogin";
 import InputWithLabel from "../components/InputWithLabel/InputWithLabel";
 import LoginHeader from "../components/LoginHeader/LoginHeader";
+import { useDispatch, useSelector } from "react-redux";
+import { fakeLogin } from "../store/reducers/loginSlice";
+import Cookies from "js-cookie";
+import Swal from "sweetalert2";
+import { SwalLoading } from "../components/SwalLoading/SwalLoading";
 
 function Login() {
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+
+  const navigation = useNavigate();
+
+  const dispatch = useDispatch();
+  const { isLoading, errorMessage, isSuccess } = useSelector(
+    (state) => state.login
+  );
+
   const handleChange = (e) => {
     setForm(() => {
       return { ...form, [e.target.name]: e.target.value };
@@ -17,8 +30,42 @@ function Login() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(form);
+    if (form.email || form.password) {
+      dispatch(fakeLogin(form));
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Mohon isi semua form",
+      });
+    }
   };
+
+  useEffect(() => {
+    isSuccess && navigation("/");
+  }, [isSuccess]);
+  useEffect(() => {
+    if (errorMessage) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: errorMessage,
+      });
+    }
+  }, [errorMessage]);
+
+  useEffect(() => {
+    if (isLoading) {
+      SwalLoading("Sedang Login");
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (Cookies.get("token")) {
+      navigation("/");
+    }
+  }, []);
+
   return (
     <div className="bg">
       <div className="login-page">
@@ -26,6 +73,7 @@ function Login() {
         <form>
           <InputWithLabel
             label={"email"}
+            name={"email"}
             type={"email"}
             placeholder={"example@gmail.com"}
             onChange={handleChange}
@@ -33,6 +81,7 @@ function Login() {
           />
           <InputWithLabel
             label={"password"}
+            name={"password"}
             type={"password"}
             placeholder={"Password"}
             onChange={handleChange}

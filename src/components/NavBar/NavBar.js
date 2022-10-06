@@ -2,11 +2,20 @@ import React, { useState } from "react";
 import NavTitle from "../NavTitle/NavTitle";
 import styles from "./NavBar.module.css";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/reducers/loginSlice";
+import Cookies from "js-cookie";
+
 function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
   const showHandleMenu = () => {
     setShowMenu(!showMenu);
-    console.log(showMenu);
+  };
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    Cookies.remove("token");
   };
   return (
     <nav className={styles.navbar}>
@@ -28,7 +37,9 @@ function NavBar() {
           >
             <div>
               <img src="https://img.icons8.com/ios/100/exit.png" alt="" />
-              <Link to={"/login"}>Logout</Link>
+              <Link onClick={handleLogout} to={"/login"}>
+                Logout
+              </Link>
             </div>
           </div>
         </div>
