@@ -18,9 +18,12 @@ function Login() {
   const navigation = useNavigate();
 
   const dispatch = useDispatch();
-  const { isLoading, errorMessage, isSuccess } = useSelector(
-    (state) => state.login
-  );
+  const {
+    isLoading,
+    errorMessage,
+    isSuccess,
+    form: formState,
+  } = useSelector((state) => state.login);
 
   const handleChange = (e) => {
     setForm(() => {
@@ -39,11 +42,13 @@ function Login() {
         text: "Mohon isi semua form",
       });
     }
+    console.log(formState);
   };
 
   useEffect(() => {
     isSuccess && navigation("/");
   }, [isSuccess]);
+
   useEffect(() => {
     if (errorMessage) {
       Swal.fire({

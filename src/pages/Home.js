@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import NavBar from "../components/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+
 function Home() {
   const navigation = useNavigate();
   useEffect(() => {
@@ -9,6 +10,7 @@ function Home() {
       navigation("/login");
     }
   }, []);
+
   return (
     <div>
       <NavBar />

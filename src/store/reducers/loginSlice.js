@@ -5,6 +5,10 @@ const initialState = {
   isLoading: false,
   isSuccess: false,
   errorMessage: "",
+  form: {
+    email: "",
+    password: "",
+  },
 };
 
 const loginAPI = async ({ email, password }) => {
@@ -15,6 +19,7 @@ const loginAPI = async ({ email, password }) => {
           responseCode: 200,
           data: {
             token: "abcdesfasad",
+            email: "admin@gmail.com",
           },
         });
       } else {
@@ -54,19 +59,24 @@ export const loginSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fakeLogin.pending, (state) => {
+      .addCase(fakeLogin.pending, (state, action) => {
         state.isLoading = true;
         state.errorMessage = initialState.errorMessage;
+        console.log(action);
         state.isSuccess = initialState.isSuccess;
       })
-      .addCase(fakeLogin.fulfilled, (state) => {
+      .addCase(fakeLogin.fulfilled, (state, action) => {
         state.isLoading = initialState.isLoading;
         state.isSuccess = true;
+        console.log(action);
+        state.form.email = action.payload.data.email;
+        console.log("state form email => ", state.form.email);
         state.errorMessage = initialState.errorMessage;
       })
-      .addCase(fakeLogin.rejected, (state) => {
+      .addCase(fakeLogin.rejected, (state, action) => {
         state.isLoading = initialState.isLoading;
         state.errorMessage = "Email atau Password Salah";
+        console.log(action);
 
         state.isSuccess = initialState.isSuccess;
       });

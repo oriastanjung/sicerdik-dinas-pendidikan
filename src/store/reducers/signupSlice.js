@@ -12,45 +12,40 @@ const initialState = {
   },
   isLoading: false,
   isSuccess: false,
-  messageEror: "",
+  errorMessage: "",
 };
 
 const signupAPI = async ({ email, password, nip, nama, no_telp, role }) => {
   return new Promise((resolve, reject) => {
-    try {
-      if (!Cookies.get("list_akun")) {
-        const data = [];
-        Cookies.set("list_akun", data);
+    setTimeout(() => {
+      if (email && password && nip && nama && no_telp && role) {
+        const form = {
+          email,
+          password,
+          nip,
+          nama,
+          no_telp,
+          role,
+        };
+        resolve({
+          data: form,
+          token: "abcdefghijikalda",
+        });
+      } else {
+        reject({
+          error: "nise",
+        });
       }
-      const data = JSON.parse(Cookies.get("list_akun"));
-      const form = {
-        email,
-        password,
-        nip,
-        nama,
-        no_telp,
-        role,
-      };
-
-      data.push(form);
-      Cookies.set("list_akun", data);
-      resolve({
-        data: form,
-      });
-    } catch (error) {
-      reject({
-        data: "There is an error",
-      });
-    }
+    }, 2000);
   });
 };
 
 export const makeAccount = createAsyncThunk(
   "signup/makeAccount",
-  async ({ email, password, nip, nama, no_telp, role }) => {
+  async (email, password, nip, nama, no_telp, role) => {
     try {
       const data = await signupAPI(email, password, nip, nama, no_telp, role);
-      console.log(data);
+      // console.log(email, pas);
       return data;
     } catch (error) {
       throw error;
@@ -61,10 +56,33 @@ export const makeAccount = createAsyncThunk(
 export const signupSlice = createSlice({
   name: "signup",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    clearAllState: (state) => {
+      state.isLoading = initialState.isLoading;
+      state.isSuccess = initialState.isSuccess;
+      state.errorMessage = initialState.errorMessage;
+    },
+  },
   extraReducers(builder) {
-    builder.addCase(makeAccount.pending, (state) => {});
+    builder
+      .addCase(makeAccount.pending, (state) => {
+        state.isLoading = true;
+        state.errorMessage = "";
+        state.isSuccess = initialState.isSuccess;
+      })
+      .addCase(makeAccount.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.errorMessage = "";
+        state.form = action.payload;
+      })
+      .addCase(makeAccount.rejected, (state) => {
+        state.isLoading = initialState.isLoading;
+        state.errorMessage = "Mohon isi dengan benar semua data";
+
+        state.isSuccess = initialState.isSuccess;
+      });
   },
 });
-
+export const { clearAllState } = signupSlice.actions;
 export default signupSlice.reducer;
