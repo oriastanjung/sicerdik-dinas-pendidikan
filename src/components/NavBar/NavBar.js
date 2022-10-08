@@ -18,33 +18,37 @@ function NavBar() {
     Cookies.remove("token");
   };
   return (
-    <nav className={styles.navbar}>
-      <NavTitle />
-      <div className={styles.title}>
-        <h1>SICERDIK</h1>
-      </div>
-      <div className={styles.user}>
-        <p>Ketua Sub Bagian</p>
-        <div onClick={showHandleMenu}>
-          <img
-            className={styles.userLogo}
-            src="https://img.icons8.com/officel/160/circled-user-male-skin-type-6.png"
-            alt=""
-          />
-          <div
-            className={styles.menu}
-            style={{ display: `${showMenu ? "block" : "none"}` }}
-          >
-            <div>
-              <img src="https://img.icons8.com/ios/100/exit.png" alt="" />
-              <Link onClick={handleLogout} to={"/login"}>
-                Logout
-              </Link>
+    <header>
+      <nav className={styles.navbar}>
+        <div className={styles.navLogo}>
+          <NavTitle />
+        </div>
+        <div className={styles.title}>
+          <h1>SICERDIK</h1>
+        </div>
+        <div className={styles.user}>
+          <p>Ketua Sub Bagian</p>
+          <div onClick={showHandleMenu}>
+            <img
+              className={styles.userLogo}
+              src="https://img.icons8.com/officel/160/circled-user-male-skin-type-6.png"
+              alt=""
+            />
+            <div
+              className={styles.menu}
+              style={{ display: `${showMenu ? "block" : "none"}` }}
+            >
+              <div>
+                <img src="https://img.icons8.com/ios/100/exit.png" alt="" />
+                <Link onClick={handleLogout} to={"/login"}>
+                  Logout
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }
 

@@ -9,7 +9,7 @@
   border: 1px solid #ffffff;
   border-radius: 40px;
   padding: 10px 20px;
-  width: 10%;
+  width: 200px;
 }
 .btnLogin:hover {
   cursor: pointer;

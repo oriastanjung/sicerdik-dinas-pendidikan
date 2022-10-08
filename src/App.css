@@ -19,6 +19,11 @@ input[type="number"] {
   object-fit: center;
   height: 100vh;
 }
+@media screen and (min-height: 1157px) {
+  .bg {
+    height: 120vh;
+  }
+}
 
 .bg-signup {
   background: url("./assets/signup-bg.png") no-repeat center center fixed;
@@ -100,4 +105,88 @@ input[type="number"] {
 }
 .login-page-no-account a:hover {
   color: rgb(156, 156, 156);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: url("./assets/footer.png") no-repeat;
+  background-size: 100%;
+  /* object-fit: center; */
+  position: relative;
+  /* bottom: 0; */
+  top: 100%;
+  width: 100%;
+  height: 120px;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.main {
+  background-color: #f4f4f4;
+}
+
+.main-container {
+  background: #ffffff;
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  /* overflow: scroll; */
+  height: 800px;
+}
+
+.main-container div h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  border-bottom: 2px solid #a19f9f;
+}
+
+.table-container {
+  height: 600px;
+  overflow-y: scroll;
+}
+
+.table-container table {
+  /* border: none; */
+  border: 1px solid #a19f9f;
+  /* background-color: red; */
+}
+
+th,
+td {
+  font-family: "Poppins", sans-serif;
+}
+
+.table thead tr th {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.table tbody tr td {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.action-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-color: #939393;
+  border-radius: 50%;
+}
+.action-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.button-status {
+  cursor: pointer;
+  border-radius: 15px;
 }

@@ -1,39 +1,48 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  background-color: #25316d;
-  padding: 10px 3%;
+  background-color: #9772fb;
+  padding: 1.5% 5%;
+}
+
+.navLogo {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .navbar .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 1;
-  /* margin-left: -5rem; */
-  text-align: center;
+  cursor: default;
 }
 
 .navbar .title h1 {
   color: white;
   font-family: "Poppins", sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 48px;
+
+  font-weight: 700;
+  font-size: 44px;
   margin: 0;
-  line-height: 72px;
 }
 
 .navbar .user p {
   color: white;
   font-family: "Poppins", sans-serif;
-  font-style: normal;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 30px;
+  margin: 0;
 }
 .navbar .user {
+  flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   flex-direction: row;
   gap: 1rem;
@@ -48,13 +57,13 @@
   z-index: 0;
 }
 .navbar .user div .menu {
-  background-color: rgb(51, 82, 138);
+  background-color: #764af1;
   width: 100px;
   height: 40px;
   padding: 10px;
   border-radius: 10px;
   position: absolute;
-  left: 93%;
+  left: 91%;
 }
 
 .userLogo {
