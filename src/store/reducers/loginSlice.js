@@ -14,7 +14,7 @@ const initialState = {
 const loginAPI = async ({ email, password }) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (email === "admin@gmail.com" && password == "123") {
+      if (email === "admin@gmail.com" && password === "123") {
         resolve({
           responseCode: 200,
           data: {
@@ -38,7 +38,7 @@ export const fakeLogin = createAsyncThunk(
     try {
       const data = await loginAPI(email, password);
 
-      Cookies.set("token", data.data.token);
+      Cookies.set("token", data.data.token, { expires: 1 / 24 / 4 });
 
       return data;
     } catch (error) {
