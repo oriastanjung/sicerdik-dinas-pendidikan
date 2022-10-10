@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import IconAksi from "../../assets/logo-aksi-table.png";
 function TableBody(props) {
   return (
@@ -6,7 +7,7 @@ function TableBody(props) {
       {props.data &&
         props.data.map((item, idx) => {
           return (
-            <tr className="text-center align-middle">
+            <tr key={idx} className="text-center align-middle">
               <td>{idx + 1}</td>
               <td>{item.tgl_naskah}</td>
               <td>{item.hal}</td>
@@ -51,9 +52,11 @@ function TableBody(props) {
               </td>
 
               <td>
-                <span className="action-btn">
-                  <img src={IconAksi} alt="icon" />
-                </span>
+                <Link to={`/detail/${item.id}`}>
+                  <span className="action-btn">
+                    <img src={IconAksi} alt="icon" />
+                  </span>
+                </Link>
               </td>
             </tr>
           );

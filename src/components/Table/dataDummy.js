@@ -1,5 +1,6 @@
 const data = [
   {
+    id: 1,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SMPN3 Tanjungpinang Timur",
@@ -10,6 +11,7 @@ const data = [
     status_kirim: "BELUM",
   },
   {
+    id: 2,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SMPN5 Tanjungpinang Timur",
@@ -21,6 +23,7 @@ const data = [
   },
 
   {
+    id: 3,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SDN5 Tanjungpinang Timur",
@@ -31,6 +34,7 @@ const data = [
     status_kirim: "BELUM",
   },
   {
+    id: 4,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SMPN5 Tanjungpinang Timur",
@@ -41,6 +45,7 @@ const data = [
     status_kirim: "SUDAH",
   },
   {
+    id: 5,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SMPN5 Tanjungpinang Timur",
@@ -51,6 +56,7 @@ const data = [
     status_kirim: "BELUM",
   },
   {
+    id: 6,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SDN5 Tanjungpinang Timur",
@@ -61,6 +67,7 @@ const data = [
     status_kirim: "BELUM",
   },
   {
+    id: 7,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SMPN5 Tanjungpinang Timur",
@@ -71,6 +78,7 @@ const data = [
     status_kirim: "SUDAH",
   },
   {
+    id: 8,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SMPN3 Tanjungpinang Timur",
@@ -81,6 +89,7 @@ const data = [
     status_kirim: "BELUM",
   },
   {
+    id: 9,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SMPN5 Tanjungpinang Timur",
@@ -92,6 +101,7 @@ const data = [
   },
 
   {
+    id: 10,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SDN5 Tanjungpinang Timur",
@@ -102,6 +112,7 @@ const data = [
     status_kirim: "BELUM",
   },
   {
+    id: 11,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SMPN5 Tanjungpinang Timur",
@@ -112,6 +123,7 @@ const data = [
     status_kirim: "SUDAH",
   },
   {
+    id: 12,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SMPN5 Tanjungpinang Timur",
@@ -122,6 +134,7 @@ const data = [
     status_kirim: "BELUM",
   },
   {
+    id: 13,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SDN5 Tanjungpinang Timur",
@@ -132,6 +145,7 @@ const data = [
     status_kirim: "BELUM",
   },
   {
+    id: 14,
     tgl_naskah: "24 Jan 2022",
     hal: "Lap Pindah Sekolah",
     asal_sekolah: "SMPN5 Tanjungpinang Timur",

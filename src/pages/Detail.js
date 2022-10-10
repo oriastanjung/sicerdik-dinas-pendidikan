@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
-import NavBar from "../components/NavBar/NavBar";
-import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+import { useParams } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
-import Table from "../components/Table/Table";
-
-function Home() {
+import NavBar from "../components/NavBar/NavBar";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import FormCard from "../components/FormCard/FormCard";
+function Detail() {
+  const { id } = useParams();
   const navigation = useNavigate();
-
   useEffect(() => {
     if (!Cookies.get("token")) {
       return navigation("/login");
+      //   window.reload();
     }
     // eslint-disable-next-line
   }, []);
@@ -18,18 +19,15 @@ function Home() {
     <>
       <NavBar />
       <main className="main pt-5 pb-5">
-        <div className="container main-container bg-white p-5">
+        <FormCard>
           <div className="mx-5 mt-3 mb-4">
-            <h2 className="pb-3">Daftar Laporan</h2>
+            <h2 className="pb-3">Detail Laporan {id}</h2>
           </div>
-          <div className="container table-container panel panel-default">
-            <Table />
-          </div>
-        </div>
+        </FormCard>
       </main>
       <Footer />
     </>
   );
 }
 
-export default Home;
+export default Detail;
