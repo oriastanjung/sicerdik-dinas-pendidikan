@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  background: #f9f9f9;
+  border: 1px solid #eeeeee;
+  border-radius: 30px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+}
+
+.card .label p {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.icon {
+  cursor: pointer;
+}
+.icon img {
+  width: 23px;
+  height: 23px;
+}

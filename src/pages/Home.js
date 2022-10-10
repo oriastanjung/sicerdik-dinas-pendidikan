@@ -7,10 +7,10 @@ import Table from "../components/Table/Table";
 
 function Home() {
   const navigation = useNavigate();
-
+  const token = Cookies.get("token");
   useEffect(() => {
-    if (!Cookies.get("token")) {
-      return navigation("/login");
+    if (!token) {
+      navigation("/login");
     }
     // eslint-disable-next-line
   }, []);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavTitle from "../NavTitle/NavTitle";
 import styles from "./NavBar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/reducers/loginSlice";
 import Cookies from "js-cookie";
@@ -12,7 +12,7 @@ function NavBar() {
     setShowMenu(!showMenu);
   };
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logout());
     Cookies.remove("token");
@@ -20,10 +20,11 @@ function NavBar() {
   return (
     <header>
       <nav className={styles.navbar}>
-        <div className={styles.navLogo}>
+        <div className={styles.navLogo} onClick={() => navigate("/")}>
           <NavTitle />
         </div>
-        <div className={styles.title}>
+
+        <div className={styles.title} onClick={() => navigate("/")}>
           <h1>SICERDIK</h1>
         </div>
         <div className={styles.user}>

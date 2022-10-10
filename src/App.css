@@ -190,3 +190,54 @@ td {
   cursor: default;
   border-radius: 15px;
 }
+
+.formCardHead {
+  border-bottom: 2px solid #a19f9f;
+}
+
+.formCardHead h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.verifikasiPenandatangan {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.verifikasiPenandatangan h4 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  margin: 0;
+  padding: 0;
+}
+
+.verifikasiPenandatangan select {
+  border-radius: 40px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  border: 1px solid #eeeeee;
+  padding: 10px 15px;
+}
+
+.verifikasiPenandatangan select option {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.formLaporanAction p {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+}

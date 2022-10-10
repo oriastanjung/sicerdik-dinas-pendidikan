@@ -1,0 +1,15 @@
+.button {
+  background: #00bdaa;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 150px; */
+  padding: 10px 20px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
