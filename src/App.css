@@ -241,3 +241,11 @@ td {
   font-weight: 300;
   font-size: 13px;
 }
+
+.text-status-form {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
