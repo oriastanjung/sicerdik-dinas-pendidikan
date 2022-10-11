@@ -17,6 +17,7 @@
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "react-select": "^5.4.0",
+    "react-to-print": "^2.14.7",
     "redux-logger": "^3.0.6",
     "sweetalert2": "^11.4.37",
     "web-vitals": "^2.1.4"
