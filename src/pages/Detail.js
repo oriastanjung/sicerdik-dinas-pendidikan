@@ -59,9 +59,18 @@ function Detail() {
             <h3 className="pb-3">Verifikasi Laporan id-{id}</h3>
           </div>
           <div className="mx-5 mt-3 mb-4">
-            <ViewSuratCard label={"Surat Permohonan Orangtua"} />
-            <ViewSuratCard label={"Surat Keterangan Pindah Sekolah"} />
-            <ViewSuratCard label={"Surat Keterangan PLH Kepala Sekolah"} />
+            <ViewSuratCard
+              label={"Surat Permohonan Orangtua"}
+              pdfFile={targetData.surat_ortu}
+            />
+            <ViewSuratCard
+              label={"Surat Keterangan Pindah Sekolah"}
+              pdfFile={targetData.surat_pindah}
+            />
+            <ViewSuratCard
+              label={"Surat Keterangan PLH Kepala Sekolah"}
+              pdfFile={`${targetData.surat_plh && targetData.surat_plh}`}
+            />
             {targetData.status_verifikasi === "BELUM" ||
             targetData.status_verifikasi === "belum" ||
             targetData.status_verifikasi === 0 ||

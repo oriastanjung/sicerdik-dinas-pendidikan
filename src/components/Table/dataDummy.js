@@ -1,3 +1,5 @@
+const surat_pindah = require("../../assets/surat_pindah_sekolah.pdf");
+const surat_ortu = require("../../assets/surat_permohonan_ortu.pdf");
 const data = [
   {
     id: 1,
@@ -9,6 +11,9 @@ const data = [
     status_verifikasi: "BELUM",
     status_ttd: "BELUM",
     status_kirim: "BELUM",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: surat_pindah,
   },
   {
     id: 2,
@@ -20,6 +25,9 @@ const data = [
     status_verifikasi: "SUDAH",
     status_ttd: "BELUM",
     status_kirim: "BELUM",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: "",
   },
 
   {
@@ -32,6 +40,9 @@ const data = [
     status_verifikasi: "SUDAH",
     status_ttd: "SUDAH",
     status_kirim: "BELUM",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: "",
   },
   {
     id: 4,
@@ -43,6 +54,9 @@ const data = [
     status_verifikasi: "SUDAH",
     status_ttd: "SUDAH",
     status_kirim: "SUDAH",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: surat_pindah,
   },
   {
     id: 5,
@@ -54,6 +68,9 @@ const data = [
     status_verifikasi: "SUDAH",
     status_ttd: "BELUM",
     status_kirim: "BELUM",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: surat_pindah,
   },
   {
     id: 6,
@@ -65,6 +82,9 @@ const data = [
     status_verifikasi: "SUDAH",
     status_ttd: "SUDAH",
     status_kirim: "BELUM",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: surat_pindah,
   },
   {
     id: 7,
@@ -76,6 +96,9 @@ const data = [
     status_verifikasi: "SUDAH",
     status_ttd: "SUDAH",
     status_kirim: "SUDAH",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: "",
   },
   {
     id: 8,
@@ -87,6 +110,9 @@ const data = [
     status_verifikasi: "BELUM",
     status_ttd: "BELUM",
     status_kirim: "BELUM",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: surat_pindah,
   },
   {
     id: 9,
@@ -98,6 +124,9 @@ const data = [
     status_verifikasi: "SUDAH",
     status_ttd: "BELUM",
     status_kirim: "BELUM",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: surat_pindah,
   },
 
   {
@@ -110,6 +139,9 @@ const data = [
     status_verifikasi: "SUDAH",
     status_ttd: "SUDAH",
     status_kirim: "BELUM",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: surat_pindah,
   },
   {
     id: 11,
@@ -121,6 +153,9 @@ const data = [
     status_verifikasi: "SUDAH",
     status_ttd: "SUDAH",
     status_kirim: "SUDAH",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: surat_pindah,
   },
   {
     id: 12,
@@ -132,6 +167,9 @@ const data = [
     status_verifikasi: "SUDAH",
     status_ttd: "BELUM",
     status_kirim: "BELUM",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: surat_pindah,
   },
   {
     id: 13,
@@ -143,6 +181,9 @@ const data = [
     status_verifikasi: "SUDAH",
     status_ttd: "SUDAH",
     status_kirim: "BELUM",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: surat_pindah,
   },
   {
     id: 14,
@@ -154,6 +195,9 @@ const data = [
     status_verifikasi: "SUDAH",
     status_ttd: "SUDAH",
     status_kirim: "SUDAH",
+    surat_ortu: surat_ortu,
+    surat_pindah: surat_pindah,
+    surat_plh: surat_pindah,
   },
 ];
 
