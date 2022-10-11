@@ -1,5 +1,5 @@
 .button {
-  background: #00bdaa;
+  background-color: #00bdaa;
   border: none;
   outline: none;
   border-radius: 40px;
@@ -12,4 +12,14 @@
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 16px;
+}
+
+.button:hover {
+  background-color: #04a797;
+}
+.btn-primary {
+  background-color: #9772fb !important;
+}
+.btn-primary:hover {
+  background-color: #8865e7 !important;
 }

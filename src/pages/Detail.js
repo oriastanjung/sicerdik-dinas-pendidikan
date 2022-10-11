@@ -1,19 +1,46 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Footer from "../components/Footer/Footer";
-import NavBar from "../components/NavBar/NavBar";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import Footer from "../components/Footer/Footer";
+import NavBar from "../components/NavBar/NavBar";
 import FormCard from "../components/FormCard/FormCard";
 import ViewSuratCard from "../components/ViewSuratCard/ViewSuratCard";
 import Form from "react-bootstrap/Form";
 import ButtonFormView from "../components/ButtonFormView/ButtonFormView";
+import InputFormWithLabel from "../components/InputFormWithLabel/InputFormWithLabel";
+import ViewStatusCard from "../components/ViewStatusCard/ViewStatusCard";
 
 function Detail() {
   const { id } = useParams();
   const navigation = useNavigate();
   const token = Cookies.get("token");
   const [penandaTangan, setPenandatangan] = useState();
+  const [formTTE, setFormTTE] = useState({
+    nip: "",
+    keyphrase: "",
+  });
+
+  const { data: allData } = useSelector((state) => state.dummyData);
+  const targetData = allData.find((item) => item.id == id);
+
+  const handleChangeFormTTE = (e) => {
+    if (!token) {
+      navigation("/login");
+    } else {
+      setFormTTE(() => {
+        return { ...formTTE, [e.target.name]: e.target.value };
+      });
+    }
+  };
+
+  const handleClickFormTTE = () => {
+    console.log("all data ==", allData);
+    console.log("targetData ==", targetData);
+  };
+
   const handleChange = (e) => {
     if (token) {
       setPenandatangan(e.target.value);
@@ -41,6 +68,17 @@ function Detail() {
                 <option value={"Sekretaris DISDIK"}>Sekretaris DISDIK </option>
               </Form.Select>
             </div>
+            <div className="verifikasiPenandatangan">
+              <h4 className="ms-3">Jenis Surat yang akan Dikirim :</h4>
+              <Form.Select onChange={handleChange}>
+                <option value={"Surat Pindah Sekolah"}>
+                  Surat Pindah Sekolah{" "}
+                </option>
+                <option value={"Surat Pindah Rayon"}>
+                  Surat Pindah Rayon{" "}
+                </option>
+              </Form.Select>
+            </div>
             <div className="formLaporanAction d-flex justify-content-end align-items-end flex-column my-4 gap-3 ">
               <div>
                 <ButtonFormView>Verifikasi</ButtonFormView>
@@ -49,16 +87,64 @@ function Detail() {
             </div>
           </div>
         </FormCard>
+
         <FormCard>
           <div className="mx-4 mt-3 mb-4 formCardHead">
             <h3 className="pb-3">Form Tanda Tangan Elektronik {"(TTE)"}</h3>
           </div>
+          <div className="d-flex flex-row justify-content-between align-items-center mx-4 mt-3 mb-4 px-4 gap-5">
+            <div className=" flex-grow-1">
+              <InputFormWithLabel
+                label={"Nomor Induk Pegawai"}
+                type={"number"}
+                name={"nip"}
+                placeholder={"Masukkan NIP"}
+                value={formTTE.nip}
+                onChange={handleChangeFormTTE}
+              />
+            </div>
+
+            <div>
+              <InputFormWithLabel
+                label={"Masukkan KEYPHRASE"}
+                type={"password"}
+                name={"keyphrase"}
+                placeholder={"Masukkan Keyphrase"}
+                value={formTTE.keyphrase}
+                onChange={handleChangeFormTTE}
+              />
+            </div>
+          </div>
           <div className="mx-5 mt-3 mb-4">
             <div className="formLaporanAction d-flex justify-content-end align-items-end flex-column my-4 gap-3 ">
               <div>
-                <ButtonFormView isPrimary>Proses TTE</ButtonFormView>
+                <ButtonFormView onClick={handleClickFormTTE} isprimary={"true"}>
+                  Proses TTE
+                </ButtonFormView>
               </div>
               <p>*Pastikan anda adalah orang yang harus menandatangani</p>
+            </div>
+          </div>
+        </FormCard>
+
+        <FormCard>
+          <div className="mx-4 mt-3 mb-4 formCardHead">
+            <h3 className="pb-3">Status Laporan</h3>
+          </div>
+          <div className="mx-5 mt-3 mb-4">
+            <ViewStatusCard
+              label={"Status Verifikasi"}
+              status={targetData.status_verifikasi}
+            />
+            <ViewStatusCard
+              label={"Status Tanda Tangan Elektronik (TTE)"}
+              status={targetData.status_ttd}
+            />
+            <div className="formLaporanAction d-flex justify-content-end align-items-end flex-column my-4 gap-3 ">
+              <div>
+                <ButtonFormView>Kirim</ButtonFormView>
+              </div>
+              <p>*Pengiriman surat dilakukan oleh Staff</p>
             </div>
           </div>
         </FormCard>

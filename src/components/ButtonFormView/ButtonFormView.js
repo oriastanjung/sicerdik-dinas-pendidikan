@@ -4,9 +4,11 @@ import styles from "./ButtonFormView.module.css";
 function ButtonFormView(props) {
   return (
     <button
-      className={`${styles.button}`}
+      className={`${styles.button} ${
+        props.isprimary ? styles["btn-primary"] : ""
+      }`}
       {...props}
-      style={{ backgroundColor: `${props.isPrimary ? "#9772FB" : ""}` }}
+      //   style={{ backgroundColor: `${props.isPrimary ? "#9772FB" : ""}` }}
     >
       {props.children}
     </button>
