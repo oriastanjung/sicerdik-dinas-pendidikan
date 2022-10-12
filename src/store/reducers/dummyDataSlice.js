@@ -11,12 +11,12 @@ export const dummyDataSlice = createSlice({
   initialState,
   reducers: {
     changeStatusVerifikasi: (state, action) => {
-      const idSearch = action.payload;
+      const idSearch = Number(action.payload);
       state.data.find((item) => item.id === idSearch).status_verifikasi =
         "SUDAH";
     },
     changeStatusKirim: (state, action) => {
-      const idSearch = action.payload;
+      const idSearch = Number(action.payload);
       if (
         state.data.find((item) => item.id === idSearch).status_ttd === "SUDAH"
       ) {
@@ -26,7 +26,8 @@ export const dummyDataSlice = createSlice({
       }
     },
     changeStatusTTD: (state, action) => {
-      const id = action.payload;
+      const id = Number(action.payload);
+      console.log(id);
       if (
         state.data.find((item) => item.id === id).status_verifikasi === "SUDAH"
       ) {
