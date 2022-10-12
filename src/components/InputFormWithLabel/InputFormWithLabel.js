@@ -10,6 +10,7 @@ function InputFormWithLabel(props) {
         name={props.name}
         onChange={props.onChange}
         placeholder={props.placeholder}
+        required={props.isRequired}
       />
     </div>
   );

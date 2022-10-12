@@ -23,3 +23,10 @@
 .btn-primary:hover {
   background-color: #8865e7 !important;
 }
+
+.btn-info {
+  background-color: #a19f9f !important;
+}
+.btn-info:hover {
+  background-color: #8a8989 !important;
+}

@@ -6,7 +6,7 @@ function ButtonFormView(props) {
     <button
       className={`${styles.button} ${
         props.isprimary ? styles["btn-primary"] : ""
-      }`}
+      } ${props.isinfo ? styles["btn-info"] : ""}`}
       {...props}
       //   style={{ backgroundColor: `${props.isPrimary ? "#9772FB" : ""}` }}
     >

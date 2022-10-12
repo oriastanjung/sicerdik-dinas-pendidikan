@@ -46,7 +46,7 @@ function Login() {
   };
 
   useEffect(() => {
-    isSuccess && navigation("/");
+    isSuccess && navigation("/manajemen-akun/users");
   }, [isSuccess]);
 
   useEffect(() => {
@@ -65,19 +65,14 @@ function Login() {
     }
   }, [isLoading]);
 
-  useEffect(() => {
-    if (Cookies.get("token")) {
-      navigation("/");
-    }
-  }, []);
-
   return (
-    <div className="bg">
+    <div className="bg-signup">
       <div className="login-page">
         <LoginHeader />
+        <h1 className="text-center text-white">Manajemen Akun Sekolah</h1>
         <form>
           <InputWithLabel
-            label={"email"}
+            label={"email admin"}
             name={"email"}
             type={"email"}
             placeholder={"example@gmail.com"}
@@ -85,7 +80,7 @@ function Login() {
             required={true}
           />
           <InputWithLabel
-            label={"password"}
+            label={"password admin"}
             name={"password"}
             type={"password"}
             placeholder={"Password"}
@@ -103,8 +98,8 @@ function Login() {
           </div>
         </form>
         <div className="login-page-no-account">
-          <p>Buatkan akun untuk Sekolah?</p>
-          <Link to={"/manajemen-akun"}>Manajemen Akun</Link>
+          <p>Kembali Ke Halaman Utama</p>
+          <Link to={"/"}>SICERDIK</Link>
         </div>
       </div>
     </div>

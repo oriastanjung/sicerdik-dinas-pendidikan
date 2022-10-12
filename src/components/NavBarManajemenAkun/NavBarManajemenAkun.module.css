@@ -1,0 +1,93 @@
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  background-color: #00bdaa;
+  padding: 1.5% 5%;
+}
+
+.navLogo {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.navbar .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  cursor: default;
+}
+
+.navbar .title h1 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+
+  font-weight: 700;
+  font-size: 44px;
+  margin: 0;
+}
+
+.navbar .user p {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 30px;
+  margin: 0;
+}
+.navbar .user {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.navbar .user div img {
+  background-color: gray;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 0;
+}
+.navbar .user div .menu {
+  background-color: #029d8d;
+  width: 100px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  left: 91%;
+}
+
+.userLogo {
+  cursor: pointer;
+}
+
+.menu div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar .user div .menu div img {
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  border-radius: 0;
+  filter: brightness(0) invert(1);
+}
+.menu div a {
+  font-size: 16px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  text-decoration: none;
+}
