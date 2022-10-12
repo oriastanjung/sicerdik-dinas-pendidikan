@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  changeStatusVerifikasi,
+  changeStatusKirim,
+  changeStatusTTD,
+  resetError,
+} from "../store/reducers/dummyDataSlice";
 
 import Footer from "../components/Footer/Footer";
 import NavBar from "../components/NavBar/NavBar";
@@ -12,19 +18,91 @@ import Form from "react-bootstrap/Form";
 import ButtonFormView from "../components/ButtonFormView/ButtonFormView";
 import InputFormWithLabel from "../components/InputFormWithLabel/InputFormWithLabel";
 import ViewStatusCard from "../components/ViewStatusCard/ViewStatusCard";
+import Swal from "sweetalert2";
 
 function Detail() {
   const { id } = useParams();
   const navigation = useNavigate();
   const token = Cookies.get("token");
   const [penandaTangan, setPenandatangan] = useState();
+
   const [formTTE, setFormTTE] = useState({
     nip: "",
     keyphrase: "",
   });
 
-  const { data: allData } = useSelector((state) => state.dummyData);
+  const dispatch = useDispatch();
+  const { data: allData, errorMessage } = useSelector(
+    (state) => state.dummyData
+  );
+  const { form } = useSelector((state) => state.login);
   const targetData = allData.find((item) => item.id == id);
+
+  const roleSementara = "Ketua Sub Bagian";
+  // const roleSementara = "Staff";
+  const handleMarkAsVerified = (id) => {
+    if (/*form.role*/ roleSementara === "Staff") {
+      dispatch(changeStatusVerifikasi(id));
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Anda bukan orang yang melakukan Verifikasi Berkas",
+      });
+    }
+  };
+
+  const handleMarkAsSended = (id) => {
+    if (/*form.role*/ roleSementara === "Staff") {
+      dispatch(changeStatusKirim(id));
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Anda bukan orang yang melakukan Verifikasi Berkas",
+      });
+    }
+  };
+
+  const handleMarkAsTTD = (id) => {
+    if (
+      /*form.role*/ roleSementara === "Ketua Sub Bagian" ||
+      /*form.role*/ roleSementara === "Sekretaris DISDIK"
+    ) {
+      if (formTTE.nip !== form.nip || formTTE.keyphrase !== form.keyphrase) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "NIP atau KEYPHRASE Salah",
+        });
+      } else if (
+        formTTE.nip === form.nip &&
+        formTTE.keyphrase === form.keyphrase
+      ) {
+        Swal.fire({
+          title: "Yakin Untuk Menandatangi?",
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: "Tanda Tangan",
+          denyButtonText: `Batal`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            dispatch(changeStatusTTD(id));
+            Swal.fire("Berhasil di Tanda tangan!", "", "success");
+          } else if (result.isDenied) {
+            Swal.fire("Tidak ada perubahan", "", "info");
+          }
+        });
+      }
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Anda bukan orang yang melakukan TTD",
+      });
+    }
+  };
 
   const handleChangeFormTTE = (e) => {
     if (!token) {
@@ -36,12 +114,6 @@ function Detail() {
     }
   };
 
-  const handleClickFormTTE = () => {
-    console.log("all data ==", allData);
-    console.log("targetData ==", targetData);
-    console.log("status verifikasi ==", targetData.status_verifikasi);
-  };
-
   const handleChange = (e) => {
     if (token) {
       setPenandatangan(e.target.value);
@@ -50,6 +122,21 @@ function Detail() {
       navigation("/login");
     }
   };
+
+  useEffect(() => {
+    if (errorMessage) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: errorMessage,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          dispatch(resetError());
+        }
+      });
+    }
+  }, [errorMessage]);
   return (
     <>
       <NavBar />
@@ -100,7 +187,13 @@ function Detail() {
                 </div>
                 <div className="formLaporanAction d-flex justify-content-end align-items-end flex-column my-4 gap-3 ">
                   <div>
-                    <ButtonFormView>Verifikasi</ButtonFormView>
+                    <ButtonFormView
+                      onClick={() => {
+                        handleMarkAsVerified(id);
+                      }}
+                    >
+                      Verifikasi
+                    </ButtonFormView>
                   </div>
                   <p>*Verifikasi berkas dilakukan oleh Staff</p>
                 </div>
@@ -149,7 +242,7 @@ function Detail() {
                 <div className="formLaporanAction d-flex justify-content-end align-items-end flex-column my-4 gap-3 ">
                   <div>
                     <ButtonFormView
-                      onClick={handleClickFormTTE}
+                      onClick={() => handleMarkAsTTD(id)}
                       isprimary={"true"}
                     >
                       Proses TTE
@@ -186,7 +279,9 @@ function Detail() {
             targetData.status_kirim === 0 ? (
               <div className="formLaporanAction d-flex justify-content-end align-items-end flex-column my-4 gap-3 ">
                 <div>
-                  <ButtonFormView>Kirim</ButtonFormView>
+                  <ButtonFormView onClick={() => handleMarkAsSended(id)}>
+                    Kirim
+                  </ButtonFormView>
                 </div>
                 <p>*Pengiriman surat dilakukan oleh Staff</p>
               </div>

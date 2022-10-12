@@ -8,6 +8,10 @@ const initialState = {
   form: {
     email: "",
     password: "",
+    role: "Ketua Sub Bagian",
+    // role: "Staff",
+    nip: "2001020039",
+    keyphrase: "abcde123",
   },
 };
 
@@ -20,6 +24,7 @@ const loginAPI = async ({ email, password }) => {
           data: {
             token: "abcdesfasad",
             email: "admin@gmail.com",
+            role: "Ketua Sub Bagian",
           },
         });
       } else {
@@ -70,7 +75,9 @@ export const loginSlice = createSlice({
         state.isSuccess = true;
         console.log(action);
         state.form.email = action.payload.data.email;
+        state.form.role = action.payload.data.role;
         console.log("state form email => ", state.form.email);
+        console.log("state form role => ", state.form.role);
         state.errorMessage = initialState.errorMessage;
       })
       .addCase(fakeLogin.rejected, (state, action) => {
