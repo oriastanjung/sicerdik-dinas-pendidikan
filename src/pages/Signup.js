@@ -105,7 +105,7 @@ function Signup() {
   }, [isSuccess]);
 
   return (
-    <div className="bg-signup">
+    <div className="bg-signup h-100">
       <div className="signup-page">
         <LoginHeader />
         <form>

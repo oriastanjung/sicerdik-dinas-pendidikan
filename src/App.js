@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-// import Signup from "./pages/Signup";
+import Signup from "./pages/Signup";
 import GantiStatusAkun from "./pages/GantiStatusAkun";
 import ResetPassword from "./pages/ResetPassword";
 import Detail from "./pages/Detail";
@@ -26,7 +26,7 @@ function App() {
           path="/manajemen-akun/users/reset-password/:id"
           element={<ResetPassword />}
         />
-        {/* <Route path="/signup" element={<Signup />} /> */}
+        <Route path="/signup" element={<Signup />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </>

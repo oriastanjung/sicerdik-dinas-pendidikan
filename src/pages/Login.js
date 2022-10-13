@@ -103,6 +103,10 @@ function Login() {
           </div>
         </form>
         <div className="login-page-no-account">
+          <p>Belum Punya Akun?</p>
+          <Link to={"/signup"}>Daftar</Link>
+        </div>
+        <div className="login-page-no-account">
           <p>Buatkan akun untuk Sekolah?</p>
           <Link to={"/manajemen-akun"}>Manajemen Akun</Link>
         </div>
