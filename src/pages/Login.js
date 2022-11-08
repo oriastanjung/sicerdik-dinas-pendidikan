@@ -102,10 +102,10 @@ function Login() {
             </ButtonLogin>
           </div>
         </form>
-        <div className="login-page-no-account">
+        {/* <div className="login-page-no-account">
           <p>Belum Punya Akun?</p>
           <Link to={"/signup"}>Daftar</Link>
-        </div>
+        </div> */}
         <div className="login-page-no-account">
           <p>Buatkan akun untuk Sekolah?</p>
           <Link to={"/manajemen-akun"}>Manajemen Akun</Link>

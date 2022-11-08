@@ -31,10 +31,10 @@ input[type="number"] {
 
 @media screen and (max-height: 768px) {
   .bg {
-    height: 120vh;
+    height: 150vh;
   }
   .bg-signup {
-    height: 120vh;
+    height: 150vh;
   }
 }
 

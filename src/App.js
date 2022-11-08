@@ -8,6 +8,11 @@ import ResetPassword from "./pages/ResetPassword";
 import Detail from "./pages/Detail";
 import Users from "./pages/Users";
 import ManajemenAkunLogin from "./pages/ManajemenAkunLogin";
+import SemuaLaporan from "./pages/SemuaLaporan";
+import LaporanPerluDikirim from "./pages/LaporanPerluDikirim";
+import LaporanSelesai from "./pages/LaporanSelesai";
+import LaporanPerluTTD from "./pages/LaporanPerluTTD";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -15,6 +20,10 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/reports" element={<SemuaLaporan />} />
+        <Route path="/reports-ttd" element={<LaporanPerluTTD />} />
+        <Route path="/reports-send" element={<LaporanPerluDikirim />} />
+        <Route path="/reports-done" element={<LaporanSelesai />} />
         <Route path="/login" element={<Login />} />
         <Route path="/manajemen-akun" element={<ManajemenAkunLogin />} />
         <Route path="/manajemen-akun/users" element={<Users />} />

@@ -6,7 +6,7 @@ import Footer from "../components/Footer/Footer";
 import Table from "../components/Table/Table";
 import SideBar from "../components/SideBar/SideBar";
 
-function Home() {
+function LaporanSelesai() {
   const navigation = useNavigate();
   const token = Cookies.get("token");
   useEffect(() => {
@@ -23,14 +23,14 @@ function Home() {
         <SideBar />
         </div>
         <main className="main pt-5 pb-5 px-2" style={{width:"83%"}}>
-          {/* <div className="container main-container bg-white p-5">
+          <div className="container main-container bg-white p-5">
             <div className="mx-5 mt-3 mb-4">
-              <h2 className="pb-3">Daftar Laporan</h2>
+              <h2 className="pb-3">Daftar Laporan Telah Selesai</h2>
             </div>
             <div className="container table-container panel panel-default">
-              <Table />
+              <Table isDone/>
             </div>
-          </div> */}
+          </div>
         </main>
       </div>
       <Footer />
@@ -38,4 +38,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default LaporanSelesai;
