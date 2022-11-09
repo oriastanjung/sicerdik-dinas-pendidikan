@@ -6,12 +6,13 @@ import Footer from "../components/Footer/Footer";
 import Table from "../components/Table/Table";
 import SideBar from "../components/SideBar/SideBar";
 
-function SemuaLaporan() {
+function LaporanPerluVerifikasi() {
   const navigation = useNavigate();
   const token = Cookies.get("token");
   useEffect(() => {
     if (!token) {
       navigation("/login");
+      window.location.reload();
     }
     // eslint-disable-next-line
   }, []);
@@ -28,10 +29,10 @@ function SemuaLaporan() {
         <main className="main pt-5 pb-5 px-2" style={{ width: "83%" }}>
           <div className="container main-container bg-white p-5">
             <div className="mx-5 mt-3 mb-4">
-              <h2 className="pb-3">Daftar Semua Naskah</h2>
+              <h2 className="pb-3">Daftar Naskah Perlu Verifikasi</h2>
             </div>
             <div className="container table-container panel panel-default">
-              <Table />
+              <Table isTTD />
             </div>
           </div>
         </main>
@@ -41,4 +42,4 @@ function SemuaLaporan() {
   );
 }
 
-export default SemuaLaporan;
+export default LaporanPerluVerifikasi;

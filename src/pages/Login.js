@@ -46,7 +46,7 @@ function Login() {
   };
 
   useEffect(() => {
-    isSuccess && navigation("/");
+    isSuccess && navigation("/home");
   }, [isSuccess]);
 
   useEffect(() => {
@@ -67,48 +67,50 @@ function Login() {
 
   useEffect(() => {
     if (Cookies.get("token")) {
-      navigation("/");
+      navigation("/home");
     }
   }, []);
 
   return (
     <div className="bg">
       <div className="login-page">
-        <LoginHeader />
-        <form>
-          <InputWithLabel
-            label={"email"}
-            name={"email"}
-            type={"email"}
-            placeholder={"example@gmail.com"}
-            onChange={handleChange}
-            required={true}
-          />
-          <InputWithLabel
-            label={"password"}
-            name={"password"}
-            type={"password"}
-            placeholder={"Password"}
-            onChange={handleChange}
-            required={true}
-          />
-          <div className={"btnSection"}>
-            <ButtonLogin
-              onClickHandle={handleClick}
-              title={"Login"}
-              type={"submit"}
-            >
-              Login
-            </ButtonLogin>
-          </div>
-        </form>
-        {/* <div className="login-page-no-account">
+        <div className="card">
+          <LoginHeader />
+          <form>
+            <InputWithLabel
+              label={"email"}
+              name={"email"}
+              type={"email"}
+              placeholder={"example@gmail.com"}
+              onChange={handleChange}
+              required={true}
+            />
+            <InputWithLabel
+              label={"password"}
+              name={"password"}
+              type={"password"}
+              placeholder={"Password"}
+              onChange={handleChange}
+              required={true}
+            />
+            <div className={"btnSection"}>
+              <ButtonLogin
+                onClickHandle={handleClick}
+                title={"Login"}
+                type={"submit"}
+              >
+                Login
+              </ButtonLogin>
+            </div>
+          </form>
+          {/* <div className="login-page-no-account">
           <p>Belum Punya Akun?</p>
           <Link to={"/signup"}>Daftar</Link>
         </div> */}
-        <div className="login-page-no-account">
-          <p>Buatkan akun untuk Sekolah?</p>
-          <Link to={"/manajemen-akun"}>Manajemen Akun</Link>
+          <div className="login-page-no-account">
+            <p>Buatkan akun untuk Sekolah?</p>
+            <Link to={"/manajemen-akun"}>Manajemen Akun</Link>
+          </div>
         </div>
       </div>
     </div>

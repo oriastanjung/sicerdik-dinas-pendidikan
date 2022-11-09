@@ -1,0 +1,27 @@
+.cardLaporan {
+  width: 400px;
+}
+
+.cardLaporan a,
+.cardLaporan p {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+.cardLaporan h4 {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  margin-top: 1rem;
+  font-weight: 400;
+}
+.cardLaporan p {
+  font-size: 16px;
+  font-weight: 300;
+  width: 90%;
+  height: 40px;
+  margin-bottom: 1rem;
+  /* overflow: auto; */
+}
+.cardLaporan img {
+  width: 70px;
+  height: 70px;
+}

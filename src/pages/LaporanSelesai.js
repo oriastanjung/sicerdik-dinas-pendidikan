@@ -12,6 +12,7 @@ function LaporanSelesai() {
   useEffect(() => {
     if (!token) {
       navigation("/login");
+      window.location.reload();
     }
     // eslint-disable-next-line
   }, []);
@@ -19,16 +20,19 @@ function LaporanSelesai() {
     <>
       <NavBar />
       <div className="d-flex flex-row justify-content-center">
-        <div className="pt-3" style={{width:"17%", borderRight: "2px solid #A19F9F"}}>
-        <SideBar />
+        <div
+          className="pt-3"
+          style={{ width: "17%", borderRight: "2px solid #A19F9F" }}
+        >
+          <SideBar />
         </div>
-        <main className="main pt-5 pb-5 px-2" style={{width:"83%"}}>
+        <main className="main pt-5 pb-5 px-2" style={{ width: "83%" }}>
           <div className="container main-container bg-white p-5">
             <div className="mx-5 mt-3 mb-4">
-              <h2 className="pb-3">Daftar Laporan Telah Selesai</h2>
+              <h2 className="pb-3">Daftar Naskah Telah Selesai</h2>
             </div>
             <div className="container table-container panel panel-default">
-              <Table isDone/>
+              <Table isDone />
             </div>
           </div>
         </main>

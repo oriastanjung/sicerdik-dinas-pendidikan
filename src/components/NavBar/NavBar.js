@@ -20,11 +20,11 @@ function NavBar() {
   return (
     <header>
       <nav className={styles.navbar}>
-        <div className={styles.navLogo} onClick={() => navigate("/")}>
+        <div className={styles.navLogo} onClick={() => navigate("/home")}>
           <NavTitle />
         </div>
 
-        <div className={styles.title} onClick={() => navigate("/")}>
+        <div className={styles.title} onClick={() => navigate("/home")}>
           <h1>SICERDIK</h1>
         </div>
         <div className={styles.user}>

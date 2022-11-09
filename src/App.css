@@ -10,17 +10,8 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.bg {
-  background: url("./assets/login-bg.png") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  object-fit: center;
-  height: 100vh;
-}
-.bg-signup {
-  background: url("./assets/signup-bg.png") no-repeat center center fixed;
+.portal {
+  background: url("./assets/portal-bg.png") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -29,11 +20,74 @@ input[type="number"] {
   height: 100vh;
 }
 
+.portal .container-portal .card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
+  width: 40%;
+  height: 75vh;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  background: #1746a2;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  /* padding: 10px; */
+}
+.portal .container-portal .card h1 {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 72px;
+  margin: 0;
+  color: white;
+}
+.portal .container-portal .card h2 {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 54px;
+  color: white;
+}
+.portal .container-portal .card h3 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 42px;
+}
+
+.bg {
+  background: url("./assets/login-bg.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  object-fit: center;
+  height: 120vh;
+}
+.bg-signup {
+  background: url("./assets/signup-bg.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  object-fit: center;
+  height: 120vh;
+}
+
 @media screen and (max-height: 768px) {
   .bg {
     height: 150vh;
   }
   .bg-signup {
+    height: 150vh;
+  }
+  .portal {
     height: 150vh;
   }
 }
@@ -60,10 +114,30 @@ input[type="number"] {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 5%;
+  padding: 3%;
   gap: 3rem;
 }
-.login-page form {
+.login-page .card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background: #1745a2d2;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10.5px);
+  -webkit-backdrop-filter: blur(10.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 5%;
+  width: 70%;
+}
+.login-page .card h1.manajemen {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+.login-page .card form {
   width: 100%;
   display: flex;
   flex-direction: column;

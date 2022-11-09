@@ -54,7 +54,7 @@ function Detail() {
   };
 
   const handleMarkAsSended = (id) => {
-    if (/*form.role*/ roleSementara === "Staff") {
+    if (/*form.role*/ roleSementara === "Ketua Sub Bagian") {
       dispatch(changeStatusKirim(id));
     } else {
       Swal.fire({
@@ -121,6 +121,7 @@ function Detail() {
       // props.changeSelected(e.target.value);
     } else {
       navigation("/login");
+      window.location.reload();
     }
   };
 

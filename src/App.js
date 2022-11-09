@@ -14,15 +14,24 @@ import LaporanSelesai from "./pages/LaporanSelesai";
 import LaporanPerluTTD from "./pages/LaporanPerluTTD";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import PageBeforeLogin from "./pages/PageBeforeLogin";
+import LaporanPerluVerifikasi from "./pages/LaporanPerluVerifikasi";
+import LaporanPerluRevisi from "./pages/LaporanPerluRevisi";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<PageBeforeLogin />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/reports" element={<SemuaLaporan />} />
         <Route path="/reports-ttd" element={<LaporanPerluTTD />} />
+        <Route
+          path="/reports-verifikasi"
+          element={<LaporanPerluVerifikasi />}
+        />
         <Route path="/reports-send" element={<LaporanPerluDikirim />} />
+        <Route path="/reports-revisi" element={<LaporanPerluRevisi />} />
         <Route path="/reports-done" element={<LaporanSelesai />} />
         <Route path="/login" element={<Login />} />
         <Route path="/manajemen-akun" element={<ManajemenAkunLogin />} />

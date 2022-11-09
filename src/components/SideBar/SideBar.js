@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import iconHome from "../../assets/icon-sidebar-home.png";
 import iconLaporan from "../../assets/icon-sidebar-laporan.png";
 import iconTTD from "../../assets/icon-sidebar-ttd.png";
+import iconVerify from "../../assets/icon-verify.png";
+import iconRevisi from "../../assets/icon-revisi.png";
 import iconKirim from "../../assets/icon-sidebar-kirim.png";
 import iconSelesai from "../../assets/icon-sidebar-selesai.png";
 
@@ -19,25 +21,37 @@ function SideBar() {
       <div className={`${styles.text} `}>
         <Link to={"/reports"}>
           <img src={iconLaporan} alt="" />
-          <p>Semua Laporan</p>
+          <p>Semua Naskah</p>
+        </Link>
+      </div>
+      <div className={`${styles.text} `}>
+        <Link to={"/reports-verifikasi"}>
+          <img src={iconVerify} alt="" />
+          <p>Naskah Perlu Verifikasi</p>
         </Link>
       </div>
       <div className={`${styles.text} `}>
         <Link to={"/reports-ttd"}>
           <img src={iconTTD} alt="" />
-          <p>Laporan Perlu TTD</p>
+          <p>Naskah Perlu TTD</p>
         </Link>
       </div>
       <div className={`${styles.text} `}>
         <Link to={"/reports-send"}>
           <img src={iconKirim} alt="" />
-          <p>Laporan Perlu Dikirim</p>
+          <p>Naskah Perlu Dikirim</p>
+        </Link>
+      </div>
+      <div className={`${styles.text} `}>
+        <Link to={"/reports-revisi"}>
+          <img src={iconRevisi} alt="" />
+          <p>Naskah Perlu Direvisi</p>
         </Link>
       </div>
       <div className={`${styles.text} `}>
         <Link to={"/reports-done"}>
           <img src={iconSelesai} alt="" />
-          <p>Laporan Selesai</p>
+          <p>Naskah Selesai</p>
         </Link>
       </div>
     </nav>
