@@ -24,9 +24,10 @@ import SideBar from "../components/SideBar/SideBar";
 function Detail() {
   const { id } = useParams();
   const navigation = useNavigate();
-  const token = Cookies.get("token");
   const [penandaTangan, setPenandatangan] = useState();
-
+  const [kembalikanSuratVerfikasi, setKembalikanSuratVerifikasi] =
+    useState(false);
+  const [kembalikanSuratTTD, setKembalikanSuratTTD] = useState(false);
   const [formTTE, setFormTTE] = useState({
     nip: "",
     keyphrase: "",
@@ -39,8 +40,8 @@ function Detail() {
   const { form } = useSelector((state) => state.login);
   const targetData = allData.find((item) => item.id == id);
 
-  const roleSementara = "Ketua Sub Bagian";
-  // const roleSementara = "Staff";
+  // const roleSementara = "Ketua Sub Bagian";
+  const roleSementara = "Staff";
   const handleMarkAsVerified = (id) => {
     if (/*form.role*/ roleSementara === "Staff") {
       dispatch(changeStatusVerifikasi(id));
@@ -60,7 +61,7 @@ function Detail() {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Anda bukan orang yang melakukan Verifikasi Berkas",
+        text: "Anda bukan orang yang melakukan Pengiriman Naskah",
       });
     }
   };
@@ -106,22 +107,64 @@ function Detail() {
   };
 
   const handleChangeFormTTE = (e) => {
-    if (!token) {
-      navigation("/login");
-    } else {
-      setFormTTE(() => {
-        return { ...formTTE, [e.target.name]: e.target.value };
-      });
-    }
+    setFormTTE(() => {
+      return { ...formTTE, [e.target.name]: e.target.value };
+    });
   };
 
   const handleChange = (e) => {
-    if (token) {
-      setPenandatangan(e.target.value);
-      // props.changeSelected(e.target.value);
+    setPenandatangan(e.target.value);
+    // props.changeSelected(e.target.value);
+  };
+
+  const handleKembalikanNaskahTTD = (e) => {
+    if (/*form.role*/ roleSementara === "Ketua Sub Bagian") {
+      Swal.fire({
+        title: "Yakin ingin kembalikan naskah ?",
+        // showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Iya, Naskah bermasalah",
+        denyButtonText: `Batalkan`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire("Naskah Dikembalikan!", "", "success");
+        }
+        // else if (result.isDenied) {
+        //   Swal.fire("Changes are not saved", "", "info");
+        // }
+      });
     } else {
-      navigation("/login");
-      window.location.reload();
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Anda bukan orang yang melakukan TTD Berkas",
+      });
+    }
+  };
+  const handleKembalikanNaskahVerifikasi = (e) => {
+    if (/*form.role*/ roleSementara === "Staff") {
+      Swal.fire({
+        title: "Yakin ingin kembalikan naskah ?",
+        // showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Iya, Naskah bermasalah",
+        denyButtonText: `Batalkan`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire("Naskah Dikembalikan!", "", "success");
+        }
+        // else if (result.isDenied) {
+        //   Swal.fire("Changes are not saved", "", "info");
+        // }
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Anda bukan orang yang melakukan Verifikasi Berkas",
+      });
     }
   };
 
@@ -152,7 +195,7 @@ function Detail() {
         <main className="main pt-5 pb-5 px-3" style={{ width: "83%" }}>
           <FormCard>
             <div className="mx-4 mt-3 mb-4 formCardHead">
-              <h3 className="pb-3">Verifikasi Laporan id-{id}</h3>
+              <h3 className="pb-3">Verifikasi Naskah id-{id}</h3>
             </div>
             <div className="mx-5 mt-3 mb-4">
               <ViewSuratCard
@@ -172,16 +215,15 @@ function Detail() {
               targetData.status_verifikasi === 0 ||
               targetData.status_verifikasi === false ? (
                 <>
-                  <div className="verifikasiPenandatangan">
-                    <h4 className="ms-3">Pilih Penandatangan :</h4>
-                    <Form.Select onChange={handleChange}>
-                      <option value={"Ketua Sub Bagian"}>
-                        Ketua Sub Bagian{" "}
-                      </option>
-                      <option value={"Sekretaris DISDIK"}>
-                        Sekretaris DISDIK{" "}
-                      </option>
-                    </Form.Select>
+                  <div className="ps-2">
+                    <InputFormWithLabel
+                      label={"Nomor Surat Naskah"}
+                      type={"text"}
+                    />
+                    <InputFormWithLabel
+                      label={"Tanggal Naskah Disposisi"}
+                      type={"date"}
+                    />
                   </div>
                   <div className="verifikasiPenandatangan">
                     <h4 className="ms-3">Jenis Surat yang akan Dikirim :</h4>
@@ -194,6 +236,46 @@ function Detail() {
                       </option>
                     </Form.Select>
                   </div>
+                  <div className="verifikasiPenandatangan">
+                    <h4 className="ms-3">Pilih Penandatangan :</h4>
+                    <Form.Select onChange={handleChange}>
+                      <option value={"Ketua Sub Bagian"}>
+                        Ketua Sub Bagian{" "}
+                      </option>
+                      <option value={"Sekretaris DISDIK"}>
+                        Sekretaris DISDIK{" "}
+                      </option>
+                    </Form.Select>
+                  </div>
+                  {kembalikanSuratVerfikasi ? (
+                    <div className="ps-2 mt-3">
+                      <InputFormWithLabel label={"Komentar "} />
+                      <div className="d-flex gap-2 mt-2">
+                        <ButtonFormView
+                          isinfo
+                          onClick={() => setKembalikanSuratVerifikasi(false)}
+                        >
+                          Batalkan
+                        </ButtonFormView>
+                        <ButtonFormView
+                          onClick={handleKembalikanNaskahVerifikasi}
+                        >
+                          Kembalikan Naskah
+                        </ButtonFormView>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="formLaporanAction mt-3 ps-2">
+                      <ButtonFormView
+                        isinfo
+                        onClick={() => setKembalikanSuratVerifikasi(true)}
+                      >
+                        Naskah Bermasalah
+                      </ButtonFormView>
+                      <p>*Kembalikan Naskah Jika ada yang tidak valid</p>
+                    </div>
+                  )}
+
                   <div className="formLaporanAction d-flex justify-content-end align-items-end flex-column my-4 gap-3 ">
                     <div>
                       <ButtonFormView
@@ -224,6 +306,12 @@ function Detail() {
             targetData.status_ttd === false ||
             targetData.status_ttd === 0 ? (
               <>
+                <div className="mx-5 mt-3 mb-4">
+                  <ViewSuratCard
+                    label={"Surat yang Akan Dikirim"}
+                    pdfFile={targetData.surat_ortu}
+                  />
+                </div>
                 <div className="d-flex flex-row justify-content-between align-items-center mx-4 mt-3 mb-4 px-4 gap-5">
                   <div className=" flex-grow-1">
                     <InputFormWithLabel
@@ -247,6 +335,32 @@ function Detail() {
                     />
                   </div>
                 </div>
+                {kembalikanSuratTTD ? (
+                  <div className="ps-5 mt-3">
+                    <InputFormWithLabel label={"Komentar "} />
+                    <div className="d-flex gap-2 mt-2">
+                      <ButtonFormView
+                        isinfo
+                        onClick={() => setKembalikanSuratTTD(false)}
+                      >
+                        Batalkan
+                      </ButtonFormView>
+                      <ButtonFormView onClick={handleKembalikanNaskahTTD}>
+                        Kembalikan Naskah
+                      </ButtonFormView>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="formLaporanAction mt-3 ps-5">
+                    <ButtonFormView
+                      isinfo
+                      onClick={() => setKembalikanSuratTTD(true)}
+                    >
+                      Naskah Bermasalah
+                    </ButtonFormView>
+                    <p>*Kembalikan Naskah Jika ada yang tidak valid</p>
+                  </div>
+                )}
                 <div className="mx-5 mt-3 mb-4">
                   <div className="formLaporanAction d-flex justify-content-end align-items-end flex-column my-4 gap-3 ">
                     <div>

@@ -17,7 +17,6 @@ import CardHomeLaporan from "../components/CardHomeLaporan/CardHomeLaporan";
 
 function Home() {
   const navigation = useNavigate();
-  const token = Cookies.get("token");
   const { data } = useSelector((state) => state.dummyData);
 
   const dataPerluVerifikasi = data
@@ -43,13 +42,6 @@ function Home() {
     })
     .map((item) => item);
 
-  useEffect(() => {
-    if (!token) {
-      navigation("/login");
-      window.location.reload();
-    }
-    // eslint-disable-next-line
-  }, []);
   return (
     <>
       <NavBar />
@@ -60,10 +52,7 @@ function Home() {
         >
           <SideBar />
         </div>
-        <main
-          className="main pt-5 pb-5 px-2"
-          style={{ width: "83%", height: "100vh" }}
-        >
+        <main className="main-home pt-5 pb-5 px-2" style={{ width: "83%" }}>
           <div className="w-100 d-flex justify-content-center mt-5 flex-row flex-wrap align-items-center gap-5">
             <CardHomeLaporan
               img={iconLaporan}

@@ -206,6 +206,16 @@ input[type="number"] {
   background-color: #f4f4f4;
 }
 
+.main-home {
+  background-color: #f4f4f4;
+  height: 100vh;
+}
+@media screen and (max-height: 768px) {
+  .main-home {
+    height: 150vh;
+  }
+}
+
 .main-container {
   background: #ffffff;
   box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.25);

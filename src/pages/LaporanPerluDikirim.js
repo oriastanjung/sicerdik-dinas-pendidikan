@@ -7,15 +7,6 @@ import Table from "../components/Table/Table";
 import SideBar from "../components/SideBar/SideBar";
 
 function LaporanPerluDikirim() {
-  const navigation = useNavigate();
-  const token = Cookies.get("token");
-  useEffect(() => {
-    if (!token) {
-      navigation("/login");
-      window.location.reload();
-    }
-    // eslint-disable-next-line
-  }, []);
   return (
     <>
       <NavBar />
