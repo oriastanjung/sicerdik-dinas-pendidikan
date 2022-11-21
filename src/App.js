@@ -17,6 +17,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import PageBeforeLogin from "./pages/PageBeforeLogin";
 import LaporanPerluVerifikasi from "./pages/LaporanPerluVerifikasi";
 import LaporanPerluRevisi from "./pages/LaporanPerluRevisi";
+import BuatAkun from "./pages/BuatAkun";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           path="/manajemen-akun/users/reset-password/:id"
           element={<ResetPassword />}
         />
+        <Route path="/manajemen-akun/buat-akun" element={<BuatAkun />}/>
         <Route path="/signup" element={<Signup />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>

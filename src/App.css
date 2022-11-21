@@ -208,12 +208,13 @@ input[type="number"] {
 
 .main-home {
   background-color: #f4f4f4;
-  height: 100vh;
+  height: 120vh;
 }
 @media screen and (max-height: 768px) {
   .main-home {
-    height: 150vh;
+    height: 190vh;
   }
+  
 }
 
 .main-container {
@@ -336,4 +337,9 @@ td {
   font-size: 18px;
   margin: 0;
   padding: 0;
+}
+
+label.label-select-akun{
+  font-family: 'Poppins',sans-serif;
+  font-size: 18px;
 }
