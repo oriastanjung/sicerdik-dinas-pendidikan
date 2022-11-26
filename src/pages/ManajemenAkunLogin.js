@@ -4,16 +4,18 @@ import ButtonLogin from "../components/ButtonLogin/ButtonLogin";
 import InputWithLabel from "../components/InputWithLabel/InputWithLabel";
 import LoginHeader from "../components/LoginHeader/LoginHeader";
 import { useDispatch, useSelector } from "react-redux";
-import { fakeLogin } from "../store/reducers/loginSlice";
+import { fakeLogin, loginAdmin } from "../store/reducers/loginSlice";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import { SwalLoading } from "../components/SwalLoading/SwalLoading";
+import { authorizationCheck } from "../utils/authRole";
 
 function Login() {
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+  const [user, setUser] = useState(authorizationCheck());
 
   const navigation = useNavigate();
 
@@ -34,7 +36,7 @@ function Login() {
   const handleClick = (e) => {
     e.preventDefault();
     if (form.email || form.password) {
-      dispatch(fakeLogin(form));
+      dispatch(loginAdmin(form));
     } else {
       Swal.fire({
         icon: "error",

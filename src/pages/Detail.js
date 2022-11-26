@@ -20,7 +20,8 @@ import InputFormWithLabel from "../components/InputFormWithLabel/InputFormWithLa
 import ViewStatusCard from "../components/ViewStatusCard/ViewStatusCard";
 import Swal from "sweetalert2";
 import SideBar from "../components/SideBar/SideBar";
-
+import { apiUploadPath } from "../config";
+import { authorizationCheck } from "../utils/authRole";
 function Detail() {
   const { id } = useParams();
   const navigation = useNavigate();
@@ -41,7 +42,8 @@ function Detail() {
   const targetData = allData.find((item) => item.id == id);
 
   // const roleSementara = "Ketua Sub Bagian";
-  const roleSementara = "Staff";
+  const [roleSementara, setRoleSementara] = useState(authorizationCheck());
+
   const handleMarkAsVerified = (id) => {
     if (/*form.role*/ roleSementara === "Staff") {
       dispatch(changeStatusVerifikasi(id));

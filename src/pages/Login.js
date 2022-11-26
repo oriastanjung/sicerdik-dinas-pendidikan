@@ -34,6 +34,7 @@ function Login() {
   const handleClick = (e) => {
     e.preventDefault();
     if (form.email || form.password) {
+      console.log("form >>> ", form);
       dispatch(fakeLogin(form));
     } else {
       Swal.fire({

@@ -6,11 +6,19 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../store/reducers/loginSlice";
 import Cookies from "js-cookie";
 
+import { authorizationCheck } from "../../utils/authRole";
 function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
   const showHandleMenu = () => {
     setShowMenu(!showMenu);
   };
+  const [user, setUser] = useState(
+    authorizationCheck() == "kasubag"
+      ? "Kepala Sub Bagian"
+      : authorizationCheck() == "staff"
+      ? "Staff"
+      : "Sekretaris DISDIK"
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -28,7 +36,7 @@ function NavBar() {
           <h1>SICERDIK</h1>
         </div>
         <div className={styles.user}>
-          <p>Ketua Sub Bagian</p>
+          <p>{user}</p>
           <div onClick={showHandleMenu}>
             <img
               className={styles.userLogo}
