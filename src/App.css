@@ -26,7 +26,7 @@ input[type="number"] {
   align-items: center;
   padding: 5rem;
   width: 40%;
-  height: 75vh;
+  height: 90vh;
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
