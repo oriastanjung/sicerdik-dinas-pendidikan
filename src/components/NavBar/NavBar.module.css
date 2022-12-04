@@ -30,6 +30,14 @@
   font-size: 44px;
   margin: 0;
 }
+.navbar .title p {
+  color: white;
+  font-family: "Poppins", sans-serif;
+
+  font-weight: 400;
+  font-size: 30px;
+  margin: 0;
+}
 
 .navbar .user p {
   color: white;
