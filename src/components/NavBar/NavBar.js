@@ -26,6 +26,7 @@ function NavBar() {
 
         <div className={styles.title} onClick={() => navigate("/home")}>
           <h1>SICERDIK</h1>
+          <p>Tanjungpinang</p>
         </div>
         <div className={styles.user}>
           <p>Ketua Sub Bagian</p>
