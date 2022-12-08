@@ -5,8 +5,15 @@ import Cookies from "js-cookie";
 import Footer from "../components/Footer/Footer";
 import Table from "../components/Table/Table";
 import SideBar from "../components/SideBar/SideBar";
-
+import { useDispatch } from "react-redux";
+import { fetchNaskah } from "../store/reducers/dummyDataSlice";
 function SemuaLaporan() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    setInterval(() => {
+      dispatch(fetchNaskah());
+    }, 5000);
+  }, []);
   return (
     <>
       <NavBar />

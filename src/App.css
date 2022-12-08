@@ -26,7 +26,7 @@ input[type="number"] {
   align-items: center;
   padding: 5rem;
   width: 40%;
-  height: 75vh;
+  height: 90vh;
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -58,7 +58,6 @@ input[type="number"] {
   font-style: normal;
   font-weight: 400;
   font-size: 28px;
-  line-height: 42px;
 }
 
 .bg {
@@ -214,7 +213,6 @@ input[type="number"] {
   .main-home {
     height: 190vh;
   }
-  
 }
 
 .main-container {
@@ -339,7 +337,7 @@ td {
   padding: 0;
 }
 
-label.label-select-akun{
-  font-family: 'Poppins',sans-serif;
+label.label-select-akun {
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
 }

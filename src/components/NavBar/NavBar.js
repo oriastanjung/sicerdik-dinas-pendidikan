@@ -24,6 +24,7 @@ function NavBar() {
   const handleLogout = () => {
     dispatch(logout());
     Cookies.remove("token");
+    localStorage.setItem("jabatan", "");
   };
   return (
     <header>

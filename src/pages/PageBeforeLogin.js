@@ -27,6 +27,7 @@ function PageBeforeLogin() {
           </div>
           <div className="d-flex flex-column justify-content-center align-items-center">
             <h1>SICERDIK</h1>
+            <h3>Tanjungpinang</h3>
             <h2>Dinas Pendidikan</h2>
             <h3>Kota Tanjungpinang</h3>
             <div className={"btnSection"}>

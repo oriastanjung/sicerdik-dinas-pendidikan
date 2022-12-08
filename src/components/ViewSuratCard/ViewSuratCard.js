@@ -3,6 +3,7 @@ import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 import styles from "./ViewSuratCard.module.css";
 import iconEye from "../../assets/icon-eye.png";
 import { useReactToPrint } from "react-to-print";
+import { apiFile } from "../../config/index";
 function ViewSuratCard(props) {
   const [show, setShow] = useState(false);
   const [numPages, setNumPages] = useState(null);
@@ -42,9 +43,10 @@ function ViewSuratCard(props) {
           >
             {props.pdfFile ? (
               <Document
-                file={props.pdfFile}
+                file={{ url: `${apiFile}/${props.pdfFile}` }}
                 onLoadSuccess={onDocumentLoadSuccess}
               >
+                {console.log("props pdfFile >> ", props.pdfFile)}
                 <Page pageNumber={pageNumber} renderInteractiveForms={true} />
               </Document>
             ) : (

@@ -5,7 +5,10 @@ import TableHeader from "../TableHeader/TableHeader";
 import { useSelector } from "react-redux";
 function TableComponent(props) {
   const tableHeader = [
-    "Tanggal Naskah",
+    "Nomor Naskah",
+    "Tanggal Naskah Masuk",
+    "Nama Siswa",
+    "Nisn",
     "Hal",
     "Asal Sekolah",
     "Tujuan Sekolah",
@@ -17,18 +20,23 @@ function TableComponent(props) {
   ];
   const { data } = useSelector((state) => state.dummyData);
 
-  const dataButuhTTD = data.filter((item) => {
-    return item.status_ttd == 'BELUM'
-  }).map((item) => item);
+  const dataButuhTTD = data
+    .filter((item) => {
+      return item.status_ttd == 0;
+    })
+    .map((item) => item);
 
-  const dataPerluDikirim = data.filter((item) => {
-    return item.status_kirim == 'BELUM'
-  }).map((item) => item);
+  const dataPerluDikirim = data
+    .filter((item) => {
+      return item.status_kirim == 0;
+    })
+    .map((item) => item);
 
-
-  const dataSelesai = data.filter((item) => {
-    return item.status_kirim == 'SUDAH'
-  }).map((item) => item);
+  const dataSelesai = data
+    .filter((item) => {
+      return item.status_kirim == 1;
+    })
+    .map((item) => item);
   console.log(dataSelesai);
   return (
     <Table responsive striped bordered>
@@ -36,7 +44,9 @@ function TableComponent(props) {
       {props.isTTD && <TableBody data={dataButuhTTD} />}
       {props.isNeedSend && <TableBody data={dataPerluDikirim} />}
       {props.isDone && <TableBody data={dataSelesai} />}
-      {(!props.isTTD && !props.isNeedSend && !props.isDone )&& <TableBody data={data} />}
+      {!props.isTTD && !props.isNeedSend && !props.isDone && (
+        <TableBody data={data} />
+      )}
       {/* {props.} */}
       {/* <TableBody data={data} /> */}
     </Table>

@@ -13,7 +13,7 @@ function SideBar() {
   return (
     <nav className="d-flex flex-column ps-4 pt-5 gap-3 ">
       <div className={`${styles.text} `}>
-        <Link to={"/"}>
+        <Link to={"/home"}>
           <img src={iconHome} alt="" />
           <p>Halaman Awal</p>
         </Link>
