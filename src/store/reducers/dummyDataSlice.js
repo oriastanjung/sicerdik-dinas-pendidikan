@@ -20,7 +20,7 @@ export const fetchNaskah = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("respon laporan fetching >> ", resp);
+      // console.log("respon laporan fetching >> ", resp);
       return resp.data.data;
     } catch (error) {
       console.log(error);
@@ -33,7 +33,7 @@ export const changeStatusVerifikasi = createAsyncThunk(
   async (id) => {
     try {
       const token = Cookies.get("token");
-      console.log("token >>> ", token);
+      // console.log("token >>> ", token);
       const res = await axios({
         method: "put",
         url: `${apiPath}/cms/laporan/ubah-status-verifikasi/${id}`,
@@ -48,6 +48,26 @@ export const changeStatusVerifikasi = createAsyncThunk(
   }
 );
 
+export const changeStatusKirim = createAsyncThunk(
+  "/dummyDataSlice/changeStatusKirim",
+  async (id) => {
+    try {
+      const token = Cookies.get("token");
+      // console.log("token >>> ", token);
+      const res = await axios({
+        method: "put",
+        url: `${apiPath}/cms/laporan/ubah-status-kirim/${id}`,
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      console.log("res >> ", res);
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 export const changeStatusTTD = createAsyncThunk(
   "/dummyDataSlice/changeStatusTTD",
   async (id) => {
@@ -61,6 +81,7 @@ export const changeStatusTTD = createAsyncThunk(
           Authorization: "Bearer " + token,
         },
       });
+      console.log("res >> ", res);
       return res;
     } catch (error) {
       console.log(error);
@@ -77,16 +98,16 @@ export const dummyDataSlice = createSlice({
     //   state.data.find((item) => item.id === idSearch).status_verifikasi =
     //     "SUDAH";
     // },
-    changeStatusKirim: (state, action) => {
-      const idSearch = Number(action.payload);
-      if (
-        state.data.find((item) => item.id === idSearch).status_ttd === "SUDAH"
-      ) {
-        state.data.find((item) => item.id === idSearch).status_kirim = "SUDAH";
-      } else {
-        state.errorMessage = "Berkas Belum di Tandatangan";
-      }
-    },
+    // changeStatusKirim: (state, action) => {
+    //   const idSearch = Number(action.payload);
+    //   if (
+    //     state.data.find((item) => item.id === idSearch).status_ttd === "SUDAH"
+    //   ) {
+    //     state.data.find((item) => item.id === idSearch).status_kirim = "SUDAH";
+    //   } else {
+    //     state.errorMessage = "Berkas Belum di Tandatangan";
+    //   }
+    // },
     // changeStatusTTD: (state, action) => {
     //   const id = Number(action.payload);
     //   console.log(id);
@@ -105,14 +126,21 @@ export const dummyDataSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchNaskah.fulfilled, (state, action) => {
-        console.log("action payload >>> ", action.payload);
+        // console.log("action payload >>> ", action.payload);
         state.data = action.payload;
       })
       .addCase(changeStatusVerifikasi.fulfilled, (state, action) => {
-        console.log("action payload >>> ", action.payload);
+        // console.log("action payload >>> ", action.payload);
+      })
+      .addCase(changeStatusTTD.fulfilled, (state, action) => {
+        // console.log("action payload >>> ", action.payload);
+      })
+
+      .addCase(changeStatusKirim.fulfilled, (state, action) => {
+        // console.log("action payload >>> ", action.payload);
       });
   },
 });
 
-export const { changeStatusKirim, resetError } = dummyDataSlice.actions;
+export const { resetError } = dummyDataSlice.actions;
 export default dummyDataSlice.reducer;

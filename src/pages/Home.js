@@ -22,14 +22,14 @@ function Home() {
   const dataPerluVerifikasi = data
     ? data
         .filter((item) => {
-          return item.status_verifikasi == 0;
+          return item.status_verifikasi == false;
         })
         .map((item) => item)
     : [];
   const dataPerluDikirim = data
     ? data
         .filter((item) => {
-          return item.status_kirim == 0;
+          return item.status_kirim == false;
         })
         .map((item) => item)
     : [];
@@ -37,7 +37,7 @@ function Home() {
   const dataButuhTTD = data
     ? data
         .filter((item) => {
-          return item.status_ttd == 0;
+          return item.status_ttd == false;
         })
         .map((item) => item)
     : [];
@@ -45,13 +45,16 @@ function Home() {
   const dataSelesai = data
     ? data
         .filter((item) => {
-          return item.status_kirim == 1;
+          return item.status_kirim == true;
         })
         .map((item) => item)
     : [];
 
   useEffect(() => {
     dispatch(fetchNaskah());
+    setInterval(() => {
+      dispatch(fetchNaskah());
+    }, 45000);
   }, []);
   return (
     <>
@@ -100,7 +103,7 @@ function Home() {
                 <CardHomeLaporan
                   img={iconSelesai}
                   size={dataSelesai.length}
-                  url={"/reports-revisi"}
+                  url={"/reports-done"}
                   label={"Total Naskah Selesai"}
                 />
               </>

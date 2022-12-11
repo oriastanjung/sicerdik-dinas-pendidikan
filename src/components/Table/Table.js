@@ -22,22 +22,22 @@ function TableComponent(props) {
 
   const dataButuhTTD = data
     .filter((item) => {
-      return item.status_ttd == 0;
+      return item.status_ttd == false;
     })
     .map((item) => item);
 
   const dataPerluDikirim = data
     .filter((item) => {
-      return item.status_kirim == 0;
+      return item.status_kirim == false;
     })
     .map((item) => item);
 
   const dataSelesai = data
     .filter((item) => {
-      return item.status_kirim == 1;
+      return item.status_kirim == true;
     })
     .map((item) => item);
-  console.log(dataSelesai);
+  // console.log(dataSelesai);
   return (
     <Table responsive striped bordered>
       <TableHeader dataRow={tableHeader} />

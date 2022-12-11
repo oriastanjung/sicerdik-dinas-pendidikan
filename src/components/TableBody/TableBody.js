@@ -7,6 +7,7 @@ function TableBody(props) {
     <tbody>
       {props.data &&
         props.data.map((item, idx) => {
+          console.log("data >> ", props.data);
           return (
             <tr key={idx} className="text-center align-middle">
               <td>{idx + 1}</td>

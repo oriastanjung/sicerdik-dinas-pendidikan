@@ -10,9 +10,7 @@ import { fetchNaskah } from "../store/reducers/dummyDataSlice";
 function SemuaLaporan() {
   const dispatch = useDispatch();
   useEffect(() => {
-    setInterval(() => {
-      dispatch(fetchNaskah());
-    }, 5000);
+    dispatch(fetchNaskah());
   }, []);
   return (
     <>

@@ -79,6 +79,14 @@ input[type="number"] {
   height: 120vh;
 }
 
+.borangBtn a {
+  text-decoration: none;
+  color: black;
+}
+.borangBtn a:hover {
+  color: black;
+  font-weight: 500;
+}
 @media screen and (max-height: 768px) {
   .bg {
     height: 150vh;

@@ -71,8 +71,22 @@ function Detail() {
   };
 
   const handleMarkAsSended = (id) => {
-    if (/*form.role*/ roleSementara === "kasubag") {
-      dispatch(changeStatusKirim(id));
+    if (
+      /*form.role*/ roleSementara === "kasubag" ||
+      roleSementara === "sekretaris"
+    ) {
+      Swal.fire({
+        title: "Kirim Naskah?",
+        showDenyButton: true,
+        confirmButtonText: "Kirim",
+        denyButtonText: `Batalkan`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(changeStatusKirim(id));
+          Swal.fire("Terkirim!", "", "success");
+          navigation("/home");
+        }
+      });
     } else {
       Swal.fire({
         icon: "error",
@@ -83,36 +97,54 @@ function Detail() {
   };
 
   const handleMarkAsTTD = (id) => {
+    console.log("role >>> ", roleSementara);
+
     if (
-      /*form.role*/ roleSementara === "Ketua Sub Bagian" ||
-      /*form.role*/ roleSementara === "Sekretaris DISDIK"
+      /*form.role*/ roleSementara === "kasubag" ||
+      /*form.role*/ roleSementara === "sekretaris"
     ) {
-      if (formTTE.nip !== form.nip || formTTE.keyphrase !== form.keyphrase) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "NIP atau KEYPHRASE Salah",
-        });
-      } else if (
-        formTTE.nip === form.nip &&
-        formTTE.keyphrase === form.keyphrase
-      ) {
-        Swal.fire({
-          title: "Yakin Untuk Menandatangi?",
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: "Tanda Tangan",
-          denyButtonText: `Batal`,
-        }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-            dispatch(changeStatusTTD(id));
-            Swal.fire("Berhasil di Tanda tangan!", "", "success");
-          } else if (result.isDenied) {
-            Swal.fire("Tidak ada perubahan", "", "info");
-          }
-        });
-      }
+      Swal.fire({
+        title: "Yakin Untuk Menandatangi?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Tanda Tangan",
+        denyButtonText: `Batal`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          dispatch(changeStatusTTD(id));
+          Swal.fire("Berhasil di Tanda tangan!", "", "success");
+          navigation("/home");
+        } else if (result.isDenied) {
+          Swal.fire("Tidak ada perubahan", "", "info");
+        }
+      });
+      // if (formTTE.nip !== form.nip || formTTE.keyphrase !== form.keyphrase) {
+      //   Swal.fire({
+      //     icon: "error",
+      //     title: "Oops...",
+      //     text: "NIP atau KEYPHRASE Salah",
+      //   });
+      // } else if (
+      //   formTTE.nip === form.nip &&
+      //   formTTE.keyphrase === form.keyphrase
+      // ) {
+      //   Swal.fire({
+      //     title: "Yakin Untuk Menandatangi?",
+      //     showDenyButton: true,
+      //     showCancelButton: true,
+      //     confirmButtonText: "Tanda Tangan",
+      //     denyButtonText: `Batal`,
+      //   }).then((result) => {
+      //     /* Read more about isConfirmed, isDenied below */
+      //     if (result.isConfirmed) {
+      //       dispatch(changeStatusTTD(id));
+      //       Swal.fire("Berhasil di Tanda tangan!", "", "success");
+      //     } else if (result.isDenied) {
+      //       Swal.fire("Tidak ada perubahan", "", "info");
+      //     }
+      //   });
+      // }
     } else {
       Swal.fire({
         icon: "error",
@@ -334,18 +366,40 @@ function Detail() {
                 "surat ortu >> ,",
                 `${apiFile}/${targetData.surat_ortu}`
               )}
-              <Link
-                to={{
-                  pathname: `/tampilin`,
-                  search: createSearchParams({
-                    nama_siswa: targetData.nama_siswa,
-                    asal_sekolah: targetData.asal_sekolah,
-                    nomor_naskah: targetData.nomor_naskah,
-                  }).toString(),
-                }}
-              >
-                Tampilkan Borang
-              </Link>
+              <div className="mx-5 card p-2 borangBtn">
+                {targetData && console.log("target data >> ", targetData)}
+                <Link
+                  to={{
+                    pathname: `/tampilin`,
+                    search: createSearchParams({
+                      nomor_laporan: targetData.nomor_laporan,
+                      nama_siswa: targetData.nama_siswa,
+                      asal_sekolah: targetData.asal_sekolah,
+                      tujuan_sekolah: targetData.tujuan_sekolah,
+                      nomor_naskah: targetData.nomor_naskah,
+                      tanggal_naskah_masuk: targetData.tanggal_naskah_masuk,
+                      tanggal_disposisi:
+                        /*targetData.tanggal_disposisi*/ targetData.tanggal_naskah_masuk,
+                      nisn_siswa: targetData.nisn_siswa,
+                      nis_siswa: /*targetData.nis_siswa*/ 201031412,
+                      kelas: /*targetData.kelas*/ "6",
+                      nama_ortu: /*targetData.nama_ortu*/ "Revina Rina",
+                      jenis_kelamin: /*targetData.jenis_kelamin*/ "Laki-laki",
+                      yang_menandatangani:
+                        /*targetData.yang_menandatangani*/ "Kasubag",
+                      nip: /*targetData.nip*/ 20123014142131,
+                      tempat_tanggal_lahir:
+                        /*targetData.tempat_tanggal_lahir*/ "Laki-laki",
+                      pekerjaan_ortu:
+                        /*targetData.pekerjaan_ortu*/ "Pegawai Negeri Sipil Guru",
+                      alasan_pindah:
+                        /*targetData.alasan_pindah*/ "Ortu Pindah Dinas",
+                    }).toString(),
+                  }}
+                >
+                  Tampilkan Borang
+                </Link>
+              </div>
               {targetData.status_ttd === false ? (
                 <>
                   <div className="mx-5 mt-3 mb-4"></div>
@@ -409,7 +463,8 @@ function Detail() {
                           onClick={() => handleMarkAsTTD(id)}
                           isprimary={"true"}
                         >
-                          Proses TTE
+                          {/* Proses TTE */}
+                          Tandai Telah Ditandatangan
                         </ButtonFormView>
                       </div>
                       <p>
@@ -439,14 +494,17 @@ function Detail() {
                   status={targetData.status_ttd ? "SUDAH" : "BELUM"}
                 />
 
-                {targetData.status_kirim === 0 ? (
+                {targetData.status_kirim === false ? (
                   <div className="formLaporanAction d-flex justify-content-end align-items-end flex-column my-4 gap-3 ">
                     <div>
                       <ButtonFormView onClick={() => handleMarkAsSended(id)}>
                         Kirim
                       </ButtonFormView>
                     </div>
-                    <p>*Pengiriman surat dilakukan oleh Staff</p>
+                    <p>
+                      *Pengiriman surat dilakukan oleh Kasubag atau Sekretaris
+                      DISDIK
+                    </p>
                   </div>
                 ) : (
                   <p className="d-flex justify-content-center align-items-center text-status-form mt-5 mb-0">

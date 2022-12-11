@@ -9,14 +9,65 @@ import {
   useSearchParams,
   useNavigate,
 } from "react-router-dom";
+
+import moment from "moment/moment";
+function dapatkanBulan(angka) {
+  if (angka == 1) {
+    return "Januari";
+  } else if (angka == 2) {
+    return "Februari";
+  } else if (angka == 3) {
+    return "Maret";
+  } else if (angka == 4) {
+    return "April";
+  } else if (angka == 5) {
+    return "Mei";
+  } else if (angka == 6) {
+    return "Juni";
+  } else if (angka == 7) {
+    return "Juli";
+  } else if (angka == 8) {
+    return "Agustus";
+  } else if (angka == 9) {
+    return "September";
+  } else if (angka == 10) {
+    return "Oktober";
+  } else if (angka == 11) {
+    return "November";
+  } else if (angka == 12) {
+    return "Desember";
+  }
+}
+
 function TampilanBorang(props) {
   const viewer = useRef(null);
   const navigation = useNavigate();
   const [searchParams] = useSearchParams();
+
+  const dateMasuk = new Date(searchParams.get("tanggal_naskah_masuk"));
+  const tanggalMasuk = dateMasuk.getDate();
+  const bulanMasuk = dapatkanBulan(dateMasuk.getMonth() + 1);
+  const tahunMasuk = dateMasuk.getFullYear();
+
   const jsonData = {
     nama_siswa: searchParams.get("nama_siswa"),
+    nomor_laporan: searchParams.get("nomor_laporan"),
     asal_sekolah: searchParams.get("asal_sekolah"),
     nomor_naskah: searchParams.get("nomor_naskah"),
+    nisn_siswa: searchParams.get("nisn_siswa"),
+    nis_siswa: searchParams.get("nis_siswa"),
+    tujuan_sekolah: searchParams.get("tujuan_sekolah"),
+    nomor_naskah: searchParams.get("nomor_naskah"),
+    kelas: searchParams.get("kelas"),
+    alasan_pindah: searchParams.get("alasan_pindah"),
+    nama_ortu: searchParams.get("nama_ortu"),
+    pekerjaan_ortu: searchParams.get("pekerjaan_ortu"),
+    jenis_kelamin: searchParams.get("jenis_kelamin"),
+    tempat_tanggal_lahir: searchParams.get("tempat_tanggal_lahir"),
+    yang_menandatangani: searchParams.get("yang_menandatangani"),
+    nip: searchParams.get("nip"),
+    tanggal_naskah_masuk: `${tanggalMasuk} ${bulanMasuk} ${tahunMasuk}`,
+    tanggal_disposisi: `${tanggalMasuk} ${bulanMasuk} ${tahunMasuk}`,
   };
   console.log("searchparams >> ", searchParams.get("nama_siswa"));
   console.log("props >> ", props);
