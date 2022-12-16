@@ -68,6 +68,30 @@ export const changeStatusKirim = createAsyncThunk(
     }
   }
 );
+
+export const updateNaskahVerifikasi = createAsyncThunk(
+  "/dummyDataSlice/updateNaskahVerifikasi",
+  async (payload) => {
+    try {
+      const token = Cookies.get("token");
+      // console.log("payload >> ", payload)
+      // console.log("token >> ", token)
+      const res = await axios({
+        method: "put",
+        url: `${apiPath}/cms/laporan/update-data-verifikasi/${payload.id}`,
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        data: payload,
+      });
+      console.log("res >> ", res);
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const changeStatusTTD = createAsyncThunk(
   "/dummyDataSlice/changeStatusTTD",
   async (id) => {
@@ -86,6 +110,29 @@ export const changeStatusTTD = createAsyncThunk(
     } catch (error) {
       console.log(error);
     }
+  }
+);
+
+export const sendFileDisdik = createAsyncThunk(
+  "/dummyDataSlice/sendFileDisdik",
+  async (payload) => {
+    let filename = payload.data
+
+    console.log("payload send file disdik >> ", payload)
+    console.log("filename send file disdik >> ", filename)
+    const token = Cookies.get("token")
+    let formData = new FormData();
+    formData.append('surat_disdik', filename)
+
+    const res = await axios.put(`${apiPath}/cms/laporan/kirim-laporan/${payload.id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': formData ? 'multipart/form-data' : 'application/json',
+      },
+    })
+
+    console.log("res >> ", res);
+    return res
   }
 );
 
@@ -137,6 +184,9 @@ export const dummyDataSlice = createSlice({
       })
 
       .addCase(changeStatusKirim.fulfilled, (state, action) => {
+        // console.log("action payload >>> ", action.payload);
+      })
+      .addCase(updateNaskahVerifikasi.fulfilled, (state, action) => {
         // console.log("action payload >>> ", action.payload);
       });
   },

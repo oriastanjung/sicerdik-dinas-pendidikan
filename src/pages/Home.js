@@ -41,6 +41,13 @@ function Home() {
         })
         .map((item) => item)
     : [];
+  const dataVerifikasi = data
+    ? data
+        .filter((item) => {
+          return item.status_verifikasi == false;
+        })
+        .map((item) => item)
+    : [];
 
   const dataSelesai = data
     ? data
@@ -49,11 +56,22 @@ function Home() {
         })
         .map((item) => item)
     : [];
+  
+    useEffect(() => {
+      if(!Cookies.get("token")){
+        navigation('/login')
+      }
+    }, [Cookies.get("token")])
 
   useEffect(() => {
     dispatch(fetchNaskah());
     setInterval(() => {
-      dispatch(fetchNaskah());
+      console.log("token", Cookies.get("token"))
+      if(!Cookies.get("token")){
+        navigation('/login')
+      }else{
+        dispatch(fetchNaskah());
+      }
     }, 45000);
   }, []);
   return (
@@ -85,7 +103,7 @@ function Home() {
                 <CardHomeLaporan
                   img={iconKirim}
                   size={dataPerluDikirim.length}
-                  url={"/reports-verifikasi"}
+                  url={"/reports-send"}
                   label={"Total Naskah Perlu Dikirim"}
                 />
                 <CardHomeLaporan
@@ -94,12 +112,12 @@ function Home() {
                   url={"/reports-ttd"}
                   label={"Total Naskah Perlu Di Tandatangan"}
                 />
-                <CardHomeLaporan
+                {/* <CardHomeLaporan
                   img={iconRevisi}
                   size={dataButuhTTD.length}
                   url={"/reports-revisi"}
                   label={"Total Naskah Perlu Di Revisi"}
-                />
+                /> */}
                 <CardHomeLaporan
                   img={iconSelesai}
                   size={dataSelesai.length}

@@ -124,9 +124,7 @@ export const loginSlice = createSlice({
         state.form.email = email;
         state.form.role = role;
         if (role === "superadmin") {
-          Cookies.set("token", token, {
-            expires: 1 / 24 / 4,
-          });
+          Cookies.set("token", token);
           console.log("role dri login >>> ", role);
           let cipherRole = CryptoJS.AES.encrypt(
             JSON.stringify(role),

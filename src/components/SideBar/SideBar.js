@@ -42,12 +42,12 @@ function SideBar() {
           <p>Naskah Perlu Dikirim</p>
         </Link>
       </div>
-      <div className={`${styles.text} `}>
+      {/* <div className={`${styles.text} `}>
         <Link to={"/reports-revisi"}>
           <img src={iconRevisi} alt="" />
           <p>Naskah Perlu Direvisi</p>
         </Link>
-      </div>
+      </div> */}
       <div className={`${styles.text} `}>
         <Link to={"/reports-done"}>
           <img src={iconSelesai} alt="" />

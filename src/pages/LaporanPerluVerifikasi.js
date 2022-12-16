@@ -29,7 +29,7 @@ function LaporanPerluVerifikasi() {
               <h2 className="pb-3">Daftar Naskah Perlu Verifikasi</h2>
             </div>
             <div className="container table-container panel panel-default">
-              <Table isTTD />
+              <Table isVerifikasi />
             </div>
           </div>
         </main>

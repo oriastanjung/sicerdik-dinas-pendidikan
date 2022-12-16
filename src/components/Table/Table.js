@@ -22,19 +22,24 @@ function TableComponent(props) {
 
   const dataButuhTTD = data
     .filter((item) => {
-      return item.status_ttd == false;
+      return item.status_ttd === false;
     })
     .map((item) => item);
 
   const dataPerluDikirim = data
     .filter((item) => {
-      return item.status_kirim == false;
+      return item.status_kirim === false;
     })
     .map((item) => item);
 
   const dataSelesai = data
     .filter((item) => {
-      return item.status_kirim == true;
+      return item.status_kirim === true;
+    })
+    .map((item) => item);
+  const dataVerifikasi = data
+    .filter((item) => {
+      return item.status_verifikasi === false;
     })
     .map((item) => item);
   // console.log(dataSelesai);
@@ -42,9 +47,10 @@ function TableComponent(props) {
     <Table responsive striped bordered>
       <TableHeader dataRow={tableHeader} />
       {props.isTTD && <TableBody data={dataButuhTTD} />}
+      {props.isVerifikasi && <TableBody data={dataVerifikasi} />}
       {props.isNeedSend && <TableBody data={dataPerluDikirim} />}
       {props.isDone && <TableBody data={dataSelesai} />}
-      {!props.isTTD && !props.isNeedSend && !props.isDone && (
+      {!props.isTTD && !props.isNeedSend && !props.isDone && !props.isVerifikasi && (
         <TableBody data={data} />
       )}
       {/* {props.} */}

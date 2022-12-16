@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 
 import moment from "moment/moment";
+import { useState } from "react";
 function dapatkanBulan(angka) {
   if (angka == 1) {
     return "Januari";
@@ -43,11 +44,19 @@ function TampilanBorang(props) {
   const viewer = useRef(null);
   const navigation = useNavigate();
   const [searchParams] = useSearchParams();
-
+  
   const dateMasuk = new Date(searchParams.get("tanggal_naskah_masuk"));
   const tanggalMasuk = dateMasuk.getDate();
   const bulanMasuk = dapatkanBulan(dateMasuk.getMonth() + 1);
   const tahunMasuk = dateMasuk.getFullYear();
+  const datedisposisi = new Date(searchParams.get("tanggal_disposisi"));
+  console.log("dateDisposisi >> ", datedisposisi);
+  const tanggaldisposisi = datedisposisi.getDate();
+  const bulandisposisi = dapatkanBulan(datedisposisi.getMonth() + 1);
+  const tahundisposisi = datedisposisi.getFullYear();
+
+  const [jenisSurat, setJenisSurat] = useState(searchParams.get("jenis_surat"))
+
 
   const jsonData = {
     nama_siswa: searchParams.get("nama_siswa"),
@@ -67,7 +76,7 @@ function TampilanBorang(props) {
     yang_menandatangani: searchParams.get("yang_menandatangani"),
     nip: searchParams.get("nip"),
     tanggal_naskah_masuk: `${tanggalMasuk} ${bulanMasuk} ${tahunMasuk}`,
-    tanggal_disposisi: `${tanggalMasuk} ${bulanMasuk} ${tahunMasuk}`,
+    tanggal_disposisi: `${tanggaldisposisi} ${bulandisposisi} ${tahundisposisi}`,
   };
   console.log("searchparams >> ", searchParams.get("nama_siswa"));
   console.log("props >> ", props);
@@ -75,7 +84,7 @@ function TampilanBorang(props) {
   console.log("query >> ", jsonData);
   useEffect(() => {
     WebViewer(
-      { path: "lib", initialDoc: "/files/borang1.doc" },
+      { path: "lib", initialDoc: `/files/${jenisSurat}.doc` },
       viewer.current
     ).then((instance) => {
       instance.UI.disableElements(["toolbarGroup-Shapes"]);
